@@ -1,0 +1,29 @@
+{
+  "name": "node_js-01-01",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index --action list",
+    "start:dev": "nodemon index --action list"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "calc-js": "^2.0.7",
+    "colors": "^1.4.0",
+    "commander": "^9.4.1",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "nanoid": "^4.0.0",
+    "uniqid": "^5.4.0",
+    "uuid": "^9.0.0",
+    "yargs": "^17.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "npx": "^10.2.2"
+  }
+}
