@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index --action list",
-    "start:dev": "nodemon index --action list"
+    "start": "node index.js --action list",
+    "start:dev": "nodemon index1.js"
   },
   "author": "",
   "license": "ISC",
