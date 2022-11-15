@@ -52,12 +52,12 @@ router.get("/users/:id", async (req, res) => {
         // const user = users.find(user => String(user.id) === id); //? - это ОБЪЕКТ
         const user = users.filter(user => String(user.id) === id); //* - это МАССИВ с одним ОБЪЕКТОМ
 
-        if (!user) {
+        if (!user || user.length === 0) {
             console.log("Нет контакта с таким ID:".yellow, id.red); //!
             lineBreak();
             return res.status(404).json({ message: "User was not found" })
         };
-        console.log(`КОНТАКТ №_${id}:`.yellow); //!+++
+        console.log(`КОНТАКТ №_${id}:`.bgYellow.blue); //!+++
         console.table(user); //!+++
         res.status(200).json(user)
 
