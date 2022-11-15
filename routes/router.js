@@ -106,8 +106,26 @@ router.post("/users", async (req, res) => {
     }
 });
 
+//! 4. Обновление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
+router.post("/users/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const users = await getUsersList();
+        const index = users.findIndex(user => String(user.id) === id);
+
+        if (index === -1) {
+            console.log("Нет контакта с таким ID:".yellow, id.red); //!
+            lineBreak();
+            return res.status(404).json({ message: "User was not found" });
+        };
 
 
+        res.status(201).json({ user })
+
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+});
 
 
 
