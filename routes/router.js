@@ -56,6 +56,8 @@ router.get("/test", (req, res) => {
 router.get("/users", async (req, res) => {
     try {
         const users = await getUsersList();
+        console.log("END".green); //!
+
         res.status(200).json(users)
 
     } catch (e) {
@@ -78,6 +80,8 @@ router.get("/users/:id", async (req, res) => {
         };
         console.log(`КОНТАКТ №_${id}:`.bgYellow.blue); //!+++
         console.table(user); //!+++
+        console.log("END".blue); //!
+
         res.status(200).json(user);
 
     } catch (e) {
@@ -97,7 +101,7 @@ router.post("/users", async (req, res) => {
         users.push(user);
         await writeUsers(users);
         // console.log("users_ПОСЛЕ:", users); //!
-
+        console.log("END".yellow); //!
 
         res.status(201).json({ user })
 
@@ -120,7 +124,9 @@ router.put("/users/:id", async (req, res) => {
             return res.status(404).json({ message: "User was not found" });
         };
 
-        const user = { ...users[index], ...body }
+        const user = { ...users[index], ...body };
+
+        console.log("END".rainbow); //!
 
         res.status(200).json({ user })
 
