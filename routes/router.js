@@ -88,7 +88,7 @@ router.get("/users/:id", async (req, res) => {
 //! 3. Создание НОВОГО ПОЛЬЗОВАТЕЛЯ
 router.post("/users", async (req, res) => {
     try {
-        const body = req.body;
+        const body = req.body; //! в index1.js ==> app.use(express.json());
         const users = await getUsersList();
         const user = { id: randomUUID(), ...body };
         console.log(`НОВЫЙ КОНТАКТ №_${user.id}:`.bgMagenta.green); //!
