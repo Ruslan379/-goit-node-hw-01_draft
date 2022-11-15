@@ -152,10 +152,12 @@ router.delete("/users/:id", async (req, res) => {
             lineBreak();
             return res.status(404).json({ message: "User was not found" });
         };
-
+        console.log(`Этот ПОЛЬЗОВАТЕЛЬ УДАЛЕН №_${id}:`.bgMagenta.red); //!
+        console.table(deletedUser); //!
+        await writeUsers(filteredUsers);
         console.log("END".red); //!
 
-        res.status(200).json(deletedUser);
+        res.status(200).json({ message: "User was remove" }).json(deletedUser);
 
     } catch (e) {
         res.status(500).json({ error: e.message });
