@@ -147,6 +147,12 @@ router.delete("/users/:id", async (req, res) => {
         const deletedUser = users.filter(user => String(user.id) === String(id)); //* - это МАССИВ с одним ОБЪЕКТОМ удаленного User
         const filteredUsers = users.filter(user => String(user.id) === String(id)); //* - это МАССИВ ОБЪЕКТОB НОВЫХ ПОЛЬЗОВАТЕЛЕЙ
 
+        if (filteredUsers.length === users.length) {
+            console.log("Нет контакта с таким ID:".yellow, id.red); //!
+            lineBreak();
+            return res.status(404).json({ message: "User was not found" });
+        };
+
         console.log("END".red); //!
 
         res.status(200).json(deletedUser);
