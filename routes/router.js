@@ -145,20 +145,20 @@ router.delete("/users/:id", async (req, res) => {
         const id = req.params.id;
         const users = await getUsersList();
         const deletedUser = users.filter(user => String(user.id) === String(id)); //* - это МАССИВ с одним ОБЪЕКТОМ удаленного User
-        const filteredUsers = users.filter(user => String(user.id) === String(id)); //* - это МАССИВ ОБЪЕКТОB НОВЫХ ПОЛЬЗОВАТЕЛЕЙ
+        const filteredUsers = users.filter(user => String(user.id) !== String(id)); //* - это МАССИВ ОБЪЕКТОB НОВЫХ ПОЛЬЗОВАТЕЛЕЙ
 
         if (filteredUsers.length === users.length) {
             console.log("Нет контакта с таким ID:".yellow, id.red); //!
             lineBreak();
             return res.status(404).json({ message: "User was not found" });
         };
-        console.log(`Этот ПОЛЬЗОВАТЕЛЬ УДАЛЕН №_${id}:`.bgMagenta.red); //!
+        console.log(`Этот ПОЛЬЗОВАТЕЛЬ УДАЛЕН №_${id}:`.bgRed.yellow); //!
         console.table(deletedUser); //!
         await writeUsers(filteredUsers);
         console.log("END".red); //!
 
         // res.status(200).json({ message: "User was remove" });
-        res.status(200).json(deletedUser);
+        res.status(200).json({ message: "User was remove:", ...deletedUser[0] });
 
 
     } catch (e) {
