@@ -232,6 +232,22 @@
     {
         "id": "11f36ec9-e7d9-42df-8d6f-857506f959ca",
         "name": "Gena",
-        "age": 26
+        "age": 112,
+        "food": "pelmeni2",
+        "cinema": "drama"
+    },
+    {
+        "id": "94534c32-9ca9-4db7-8d16-a91c69fdba75",
+        "name": "Sveta",
+        "age": 99,
+        "food": "meatmeat",
+        "cinema": "detective"
+    },
+    {
+        "id": "c7f00ef9-3ec4-4fa1-b3be-ced8afc86220",
+        "name": "Sveta",
+        "age": 99,
+        "food": "meat",
+        "cinema": "detective"
     }
 ]

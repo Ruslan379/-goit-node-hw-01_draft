@@ -125,6 +125,9 @@ router.put("/users/:id", async (req, res) => {
         };
 
         const user = { ...users[index], ...body };
+        users.splice(index, 1, user);
+        // console.log("users_ПОСЛЕ:", users); //!
+        await writeUsers(users);
 
         console.log("END".rainbow); //!
 
