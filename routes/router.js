@@ -34,8 +34,12 @@ const getUsersList = async (a = 0) => {
 const writeUsers = async (users) => {
     await fs.writeFile(userPath, JSON.stringify(users), 'utf8');
     // const allUsers = await fs.readFile(userPath, 'utf8'); //? - Читаем файл contacts.json
-    console.log("СПИСОК НОВЫХ ПОЛЬЗОВАТЕЛЕЙ:".bgGreen.magenta); //!+++
-    await getUsersList(1)
+    if (users.length !== 0) {
+        console.log("СПИСОК НОВЫХ ПОЛЬЗОВАТЕЛЕЙ:".bgGreen.magenta); //!+++
+        await getUsersList(1)
+    };
+    // console.log("СПИСОК НОВЫХ ПОЛЬЗОВАТЕЛЕЙ:".bgGreen.magenta); //!+++
+    // await getUsersList(1);
     // console.table(allUsers);
     // lineBreak();
     return users;
@@ -131,7 +135,7 @@ router.put("/users/:id", async (req, res) => {
 
         console.log("END".rainbow); //!
 
-        res.status(200).json({ user })
+        res.status(200).json(user)
 
     } catch (e) {
         res.status(500).json({ error: e.message })
@@ -160,12 +164,25 @@ router.delete("/users/:id", async (req, res) => {
         // res.status(200).json({ message: "User was remove" });
         res.status(200).json({ message: "User was remove:", ...deletedUser[0] });
 
-
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
 });
 
+
+//! 6. Удаление ВСЕХ ПОЛЬЗОВАТЕЛЕЙ
+router.delete("/users", async (req, res) => {
+    try {
+        console.log("ВСЕ ПОЛЬЗОВАТЕЛИ УДАЛЕНЫ...".bgRed.white); //!
+        await writeUsers([]);
+        console.log("END".bgRed.white); //!
+
+        res.status(200).json({ message: "ALL Users were remove..." });
+
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
 
 
 
