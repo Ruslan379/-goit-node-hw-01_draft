@@ -16,11 +16,14 @@ lineBreak();
 
 //!* ------------------------------------------------ ФУНЦИИ-ВЫЗЫВАЛКИ ------------------------------------------------
 //todo   ------  1. Получение списка ВСЕХ ПОЛЬЗОВАТЕЛЕЙ ------
-const getUsersList = async () => {
+const getUsersList = async (a = 0) => {
     const users = JSON.parse(await fs.readFile(userPath, 'utf8'));
     // console.log("users:".bgCyan, users); //!
     // lineBreak();
-    console.log("СПИСОК ВСЕХ ПОЛЬЗОВАТЕЛЕЙ:".bgCyan.red); //!+++
+    if (a === 0) {
+        console.log("a:", a);
+        console.log("СПИСОК ВСЕХ ПОЛЬЗОВАТЕЛЕЙ:".bgCyan.red)
+    };
     console.table(users);
     lineBreak();
     return users
@@ -29,11 +32,15 @@ const getUsersList = async () => {
 
 //todo   ------  2. Создание НОВОГО списка ВСЕХ ПОЛЬЗОВАТЕЛЕЙ ------
 const writeUsers = async (users) => {
-    const allUsers = await fs.readFile(userPath, JSON.stringify(users));
+    await fs.writeFile(userPath, JSON.stringify(users), 'utf8');
+    // const allUsers = await fs.readFile(userPath, 'utf8'); //? - Читаем файл contacts.json
     console.log("СПИСОК НОВЫХ ПОЛЬЗОВАТЕЛЕЙ:".bgGreen.magenta); //!+++
-    console.table(allUsers);
-    lineBreak();
-    return allUsers;
+    await getUsersList(1)
+    // console.table(allUsers);
+    // lineBreak();
+    return users;
+
+    // return await fs.writeFile(userPath, JSON.stringify(users));
 };
 //* ____________________________________________________________________________________________________________________
 
@@ -84,8 +91,13 @@ router.post("/users", async (req, res) => {
         const body = req.body;
         const users = await getUsersList();
         const user = { id: randomUUID(), ...body };
+        console.log(`НОВЫЙ КОНТАКТ №_${user.id}:`.bgYellow.blue); //!
+        console.table([user]); //!
+
         users.push(user);
         await writeUsers(users);
+        // console.log("users_ПОСЛЕ:", users); //!
+
 
         res.status(201).json({ user })
 
