@@ -21,7 +21,7 @@ const getUsersList = async (a = 0) => {
     // console.log("users:".bgCyan, users); //!
     // lineBreak();
     if (a === 0) {
-        console.log("a:", a);
+        // console.log("a:", a); //!
         console.log("СПИСОК ВСЕХ ПОЛЬЗОВАТЕЛЕЙ:".bgCyan.red)
     };
     console.table(users);
@@ -91,7 +91,7 @@ router.post("/users", async (req, res) => {
         const body = req.body;
         const users = await getUsersList();
         const user = { id: randomUUID(), ...body };
-        console.log(`НОВЫЙ КОНТАКТ №_${user.id}:`.bgYellow.blue); //!
+        console.log(`НОВЫЙ КОНТАКТ №_${user.id}:`.bgMagenta.green); //!
         console.table([user]); //!
 
         users.push(user);
