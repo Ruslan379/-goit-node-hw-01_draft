@@ -228,5 +228,10 @@
             "catchPhrase": "Centralized empowering task-force",
             "bs": "target end-to-end models"
         }
+    },
+    {
+        "id": "11f36ec9-e7d9-42df-8d6f-857506f959ca",
+        "name": "Gena",
+        "age": 26
     }
 ]

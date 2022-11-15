@@ -107,9 +107,10 @@ router.post("/users", async (req, res) => {
 });
 
 //! 4. Обновление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
-router.post("/users/:id", async (req, res) => {
+router.put("/users/:id", async (req, res) => {
     try {
         const id = req.params.id;
+        const body = req.body; //! в index1.js ==> app.use(express.json());
         const users = await getUsersList();
         const index = users.findIndex(user => String(user.id) === id);
 
@@ -119,8 +120,9 @@ router.post("/users/:id", async (req, res) => {
             return res.status(404).json({ message: "User was not found" });
         };
 
+        const user = { ...users[index], ...body }
 
-        res.status(201).json({ user })
+        res.status(200).json({ user })
 
     } catch (e) {
         res.status(500).json({ error: e.message })
