@@ -144,12 +144,12 @@ router.delete("/users/:id", async (req, res) => {
     try {
         const id = req.params.id;
         const users = await getUsersList();
-        const deletedUsers = users.filter(user => String(user.id) === String(id)); //* - это МАССИВ с одним ОБЪЕКТОМ
-        const filteredUsers = users.filter(user => String(user.id) === String(id)); //* - это МАССИВ с одним ОБЪЕКТОМ
+        const deletedUser = users.filter(user => String(user.id) === String(id)); //* - это МАССИВ с одним ОБЪЕКТОМ удаленного User
+        const filteredUsers = users.filter(user => String(user.id) === String(id)); //* - это МАССИВ ОБЪЕКТОB НОВЫХ ПОЛЬЗОВАТЕЛЕЙ
 
         console.log("END".red); //!
 
-        res.status(200).json(user);
+        res.status(200).json(deletedUser);
 
     } catch (e) {
         res.status(500).json({ error: e.message });
