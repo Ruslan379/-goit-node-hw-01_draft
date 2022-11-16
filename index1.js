@@ -15,7 +15,8 @@ app.use(express.json());
 //     res.json({ message: "Hello my dear friend!" });
 // });
 
-app.use(router);
+// app.use(router);
+app.use("/api", router);
 
 
 app.listen(PORT, () => {
