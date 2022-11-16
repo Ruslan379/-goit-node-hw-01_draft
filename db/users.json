@@ -249,5 +249,19 @@
         "username": "Fate2",
         "email": "Ruslan2_Fate2@ukr.net",
         "photocamera": "Nikon D810"
+    },
+    {
+        "id": "f367252b-b701-4563-a51c-3b55f78778d6",
+        "name": "Sveta3",
+        "age": 3,
+        "food": "meat3",
+        "cinema": "detective3"
+    },
+    {
+        "id": "1ed49c6f-bbfe-4fac-9a6c-56b38e52eeba",
+        "name": "Sveta4",
+        "age": 4,
+        "food": "meat4",
+        "cinema": "detective4"
     }
 ]

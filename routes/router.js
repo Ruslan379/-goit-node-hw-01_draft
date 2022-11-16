@@ -23,7 +23,7 @@ const getUsersList = async (showListAllUsers = 1) => {
     // lineBreak();
     if (showListAllUsers === 1) {
         // console.log("a:", a); //!
-        console.log("СПИСОК ВСЕХ ПОЛЬЗОВАТЕЛЕЙ:".bgCyan.red)
+        console.log("СПИСОК ВСЕХ ПОЛЬЗОВАТЕЛЕЙ:".bgGreen.black)
     };
     console.table(users);
     lineBreak();
@@ -36,7 +36,7 @@ const writeUsers = async (users) => {
     await fs.writeFile(userPath, JSON.stringify(users), 'utf8');
     // const allUsers = await fs.readFile(userPath, 'utf8'); //? - Читаем файл contacts.json
     if (users.length !== 0) {
-        console.log("СПИСОК НОВЫХ ПОЛЬЗОВАТЕЛЕЙ:".bgGreen.magenta); //!+++
+        console.log("СПИСОК НОВЫХ ПОЛЬЗОВАТЕЛЕЙ:".bgCyan.red); //!+++
         await getUsersList(0)
     };
     // console.log("СПИСОК НОВЫХ ПОЛЬЗОВАТЕЛЕЙ:".bgGreen.magenta); //!+++
@@ -61,6 +61,7 @@ router.get("/test", (req, res) => {
 //! 1. Получение списка ВСЕХ ПОЛЬЗОВАТЕЛЕЙ
 router.get("/users", async (req, res) => {
     try {
+        console.log("START".green); //!
         const users = await getUsersList();
         console.log("END".green); //!
 
@@ -75,21 +76,23 @@ router.get("/users", async (req, res) => {
 //! 2. Получение ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
 router.get("/users/:id", async (req, res) => {
     try {
+        console.log("START".blue); //!
         const id = req.params.id;
         const users = await getUsersList();
         // const user = users.find(user => String(user.id) === id); //? - это ОБЪЕКТ
         const user = users.filter(user => String(user.id) === id); //* - это МАССИВ с одним ОБЪЕКТОМ
 
         if (!user || user.length === 0) {
-            console.log("Нет контакта с таким ID:".yellow, id.red); //!
+            console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
+            console.log("END".blue); //!
             return res.status(404).json({ message: "User was not found" });
         };
-        console.log(`КОНТАКТ №_${id}:`.bgYellow.blue); //!+++
+        console.log(`ПОЛЬЗОВАТЕЛЬ с ID: ${id}:`.bgBlue.yellow); //!+++
         console.table(user); //!+++
         console.log("END".blue); //!
 
-        res.status(200).json(user);
+        res.status(200).json(user[0]); //? - это УЖЕ ОБЪЕКТ
 
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -100,15 +103,17 @@ router.get("/users/:id", async (req, res) => {
 //! 3. Создание НОВОГО ПОЛЬЗОВАТЕЛЯ
 router.post("/users", async (req, res) => {
     try {
+        console.log("START".yellow); //!
         const body = req.body; //! в index1.js ==> app.use(express.json());
         const users = await getUsersList();
         const user = { id: randomUUID(), ...body };
-        console.log(`НОВЫЙ КОНТАКТ №_${user.id}:`.bgMagenta.green); //!
+        console.log(`НОВЫЙ ПОЛЬЗОВАТЕЛЬ с ID: ${user.id}:`.bgYellow.blue); //!
         console.table([user]); //!
 
         users.push(user);
         await writeUsers(users);
         // console.log("users_ПОСЛЕ:", users); //!
+
         console.log("END".yellow); //!
 
         res.status(201).json({ user })
@@ -122,20 +127,26 @@ router.post("/users", async (req, res) => {
 //! 4. Обновление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
 router.put("/users/:id", async (req, res) => {
     try {
+        console.log("START".rainbow); //!
         const id = req.params.id;
         const body = req.body; //! в index1.js ==> app.use(express.json());
         const users = await getUsersList();
         const index = users.findIndex(user => String(user.id) === id);
 
         if (index === -1) {
-            console.log("Нет контакта с таким ID:".yellow, id.red); //!
+            console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
+            console.log("END".rainbow); //!
             return res.status(404).json({ message: "User was not found" });
         };
 
         const user = { ...users[index], ...body };
         users.splice(index, 1, user);
         // console.log("users_ПОСЛЕ:", users); //!
+
+        console.log(`ОБНОВЛЕННЫЙ ПОЛЬЗОВАТЕЛЬ с ID: ${id}:`.rainbow); //!
+        console.table([user]); //!
+
         await writeUsers(users);
 
         console.log("END".rainbow); //!
@@ -151,17 +162,19 @@ router.put("/users/:id", async (req, res) => {
 //! 5. Удаление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
 router.delete("/users/:id", async (req, res) => {
     try {
+        console.log("START".red); //!
         const id = req.params.id;
         const users = await getUsersList();
         const deletedUser = users.filter(user => String(user.id) === String(id)); //* - это МАССИВ с одним ОБЪЕКТОМ удаленного User
         const filteredUsers = users.filter(user => String(user.id) !== String(id)); //* - это МАССИВ ОБЪЕКТОB НОВЫХ ПОЛЬЗОВАТЕЛЕЙ
 
         if (filteredUsers.length === users.length) {
-            console.log("Нет контакта с таким ID:".yellow, id.red); //!
+            console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
+            console.log("END".red);
             return res.status(404).json({ message: "User was not found" });
         };
-        console.log(`Этот ПОЛЬЗОВАТЕЛЬ УДАЛЕН №_${id}:`.bgRed.yellow); //!
+        console.log(`Этот ПОЛЬЗОВАТЕЛЬ УДАЛЕН ID: ${id}:`.bgRed.yellow); //!
         console.table(deletedUser); //!
         await writeUsers(filteredUsers);
         console.log("END".red); //!
@@ -178,9 +191,12 @@ router.delete("/users/:id", async (req, res) => {
 //! 6. Удаление ВСЕХ ПОЛЬЗОВАТЕЛЕЙ
 router.delete("/users", async (req, res) => {
     try {
+        console.log("START".bgRed.yellow); //!
+        lineBreak();
         console.log("ВСЕ ПОЛЬЗОВАТЕЛИ УДАЛЕНЫ...".bgRed.white); //!
         await writeUsers([]);
-        console.log("END".bgRed.white); //!
+        lineBreak();
+        console.log("END".bgRed.yellow); //!
 
         res.status(200).json({ message: "ALL Users were remove..." });
 
