@@ -1,14 +1,17 @@
 require('colors');
-const { Router } = require("express");
+// const { Router } = require("express"); //1
+// const router = Router(); //1
+const express = require("express"); //2
+const router = express.Router(); //2
+
 const fs = require("fs/promises");
 const path = require("path");
-
 const { randomUUID } = require("crypto");
 
 const { lineBreak } = require("./../service");
 
 //------------------------------------------------------------
-const router = Router();
+
 
 const userPath = path.join(__dirname, "/../db/users.json");
 lineBreak();
@@ -51,11 +54,20 @@ const writeUsers = async (users) => {
 
 //! 0. Тестовый ЭНДПОИНТ
 router.get("/test", (req, res) => {
-    // res.send("GET request");
-    res.json({
-        message: "Hello my dear friend!",
+    console.log("START".bgWhite.black); //!
+    lineBreak();
+    const test = {
+        message1: "Hello my dear friend!",
+        message2: "This is test PAGE",
         status: "GET "
-    });
+    };
+    console.log("Это ТЕСТОВАЯ СТРАНИЦА".bgYellow.black); //!
+    console.table([test]); //!
+    lineBreak();
+    console.log("END".bgWhite.black); //!
+
+    // res.send("GET request");
+    res.json(test);
 });
 
 
@@ -66,7 +78,8 @@ router.get("/users", async (req, res) => {
         const users = await getUsersList();
         console.log("END".green); //!
 
-        res.status(200).json(users)
+        res.status(200).json(users);
+        // res.redirect("/test");
 
     } catch (e) {
         res.status(500).json({ error: e.message })
@@ -200,6 +213,7 @@ router.delete("/users", async (req, res) => {
         console.log("END".bgRed.yellow); //!
 
         res.status(200).json({ message: "ALL Users were remove..." });
+
 
     } catch (e) {
         res.status(500).json({ error: e.message });
