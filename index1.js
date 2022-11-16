@@ -5,16 +5,17 @@ const router = require("./routes/router");
 const { lineBreak } = require("./service");
 
 //----------------------------------------------------------------
-const app = express();
-app.use(express.json());
+const PORT = 3000;
+const server = express();
+server.use(express.json());
 
-// app.get("/test", (req, res) => {
+// server.get("/test", (req, res) => {
 //     res.json({ message: "Hello my dear friend!" });
 // });
 
-app.use(router)
+server.use(router)
 
-app.listen(3000, () => {
-    console.log("Server is running on the port 3000!".bgGreen.red);
+server.listen(PORT, () => {
+    console.log(`Server is running on the port: ${PORT}`.bgGreen.red);
     lineBreak();
 });
