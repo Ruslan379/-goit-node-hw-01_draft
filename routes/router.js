@@ -2,6 +2,7 @@ require('colors');
 const { Router } = require("express");
 const fs = require("fs/promises");
 const path = require("path");
+
 const { randomUUID } = require("crypto");
 
 const { lineBreak } = require("./../service");
@@ -10,9 +11,8 @@ const { lineBreak } = require("./../service");
 const router = Router();
 
 const userPath = path.join(__dirname, "/../db/users.json");
-
+lineBreak();
 console.log("userPath:".bgBlue.yellow, userPath.blue);
-
 lineBreak();
 
 //!* ------------------------------------------------ ФУНЦИИ-ВЫЗЫВАЛКИ ------------------------------------------------
@@ -51,6 +51,7 @@ const writeUsers = async (users) => {
 
 //! 0. Тестовый ЭНДПОИНТ
 router.get("/test", (req, res) => {
+    // res.send("GET request");
     res.json({
         message: "Hello my dear friend!",
         status: "GET "
