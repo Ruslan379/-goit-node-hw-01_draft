@@ -11,8 +11,6 @@ const { randomUUID } = require("crypto");
 const { lineBreak } = require("./../service");
 
 //------------------------------------------------------------
-
-
 const userPath = path.join(__dirname, "/../db/users.json");
 lineBreak();
 console.log("userPath:".bgBlue.yellow, userPath.blue);
