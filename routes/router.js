@@ -4,23 +4,24 @@ const fs = require("fs/promises");
 const path = require("path");
 const { randomUUID } = require("crypto");
 
-
 const { lineBreak } = require("./../service");
 
 //------------------------------------------------------------
 const router = Router();
 
 const userPath = path.join(__dirname, "/../db/users.json");
+
 console.log("userPath:".bgBlue.yellow, userPath.blue);
+
 lineBreak();
 
 //!* ------------------------------------------------ ФУНЦИИ-ВЫЗЫВАЛКИ ------------------------------------------------
 //todo   ------  1. Получение списка ВСЕХ ПОЛЬЗОВАТЕЛЕЙ ------
-const getUsersList = async (a = 0) => {
+const getUsersList = async (showListAllUsers = 1) => {
     const users = JSON.parse(await fs.readFile(userPath, 'utf8'));
     // console.log("users:".bgCyan, users); //!
     // lineBreak();
-    if (a === 0) {
+    if (showListAllUsers === 1) {
         // console.log("a:", a); //!
         console.log("СПИСОК ВСЕХ ПОЛЬЗОВАТЕЛЕЙ:".bgCyan.red)
     };
@@ -36,10 +37,10 @@ const writeUsers = async (users) => {
     // const allUsers = await fs.readFile(userPath, 'utf8'); //? - Читаем файл contacts.json
     if (users.length !== 0) {
         console.log("СПИСОК НОВЫХ ПОЛЬЗОВАТЕЛЕЙ:".bgGreen.magenta); //!+++
-        await getUsersList(1)
+        await getUsersList(0)
     };
     // console.log("СПИСОК НОВЫХ ПОЛЬЗОВАТЕЛЕЙ:".bgGreen.magenta); //!+++
-    // await getUsersList(1);
+    // await getUsersList(0);
     // console.table(allUsers);
     // lineBreak();
     return users;
@@ -56,6 +57,7 @@ router.get("/test", (req, res) => {
     });
 });
 
+
 //! 1. Получение списка ВСЕХ ПОЛЬЗОВАТЕЛЕЙ
 router.get("/users", async (req, res) => {
     try {
@@ -68,6 +70,7 @@ router.get("/users", async (req, res) => {
         res.status(500).json({ error: e.message })
     }
 });
+
 
 //! 2. Получение ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
 router.get("/users/:id", async (req, res) => {
@@ -93,6 +96,7 @@ router.get("/users/:id", async (req, res) => {
     }
 });
 
+
 //! 3. Создание НОВОГО ПОЛЬЗОВАТЕЛЯ
 router.post("/users", async (req, res) => {
     try {
@@ -113,6 +117,7 @@ router.post("/users", async (req, res) => {
         res.status(500).json({ error: e.message })
     }
 });
+
 
 //! 4. Обновление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
 router.put("/users/:id", async (req, res) => {
@@ -183,8 +188,6 @@ router.delete("/users", async (req, res) => {
         res.status(500).json({ error: e.message });
     }
 });
-
-
 
 
 

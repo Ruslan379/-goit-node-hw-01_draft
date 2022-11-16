@@ -1,9 +1,8 @@
 require('colors');
 const express = require("express");
+
 const router = require("./routes/router");
-
 const { lineBreak } = require("./service");
-
 
 //----------------------------------------------------------------
 const app = express();
