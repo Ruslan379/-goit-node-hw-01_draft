@@ -80,7 +80,6 @@ router.get("/users", async (req, res) => {
         // res.redirect("/test"); //! Так УЖЕ НЕ РАБОТАЕТ!!!
         // res.redirect("http://localhost:8082/api/test");
 
-
     } catch (e) {
         res.status(500).json({ error: e.message })
     }
