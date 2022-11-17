@@ -12,7 +12,16 @@ const { lineBreak } = require("./service");
 const PORT = process.env.PORT || 3000;
 
 const app = express();
-app.use(morgan('tiny'));
+
+// app.use(morgan('combined')); //* +++
+// app.use(morgan('common ')); //* +++
+app.use(morgan('dev')); //* +++++
+// app.use(morgan('short')); //* +++
+// app.use(morgan('tiny')); //* +++
+
+
+// app.use(logger('dev')); //?
+
 app.use(express.json()); //! Парсер JSON
 
 //! Middleware
