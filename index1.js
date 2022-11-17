@@ -6,7 +6,7 @@ const router = require("./routes/router");
 const { lineBreak } = require("./service");
 
 //----------------------------------------------------------------
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; //! НЕ РАБОТАЕТ!!!
 const app = express();
 app.use(morgan('tiny'));
 app.use(express.json());
