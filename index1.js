@@ -1,12 +1,16 @@
-require('colors');
+require("colors");
 const express = require("express");
-const morgan = require('morgan');
+const morgan = require("morgan");
+require("dotenv").config();
 
 const router = require("./routes/router");
 const { lineBreak } = require("./service");
 
 //----------------------------------------------------------------
-const PORT = process.env.PORT || 3000; //! НЕ РАБОТАЕТ!!!
+// const PORT = 3000;
+// const PORT = process.env.PORT; //! НЕ РАБОТАЕТ!!!
+const PORT = process.env.PORT || 3000;
+
 const app = express();
 app.use(morgan('tiny'));
 app.use(express.json());

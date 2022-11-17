@@ -76,8 +76,8 @@ router.get("/users", async (req, res) => {
         const users = await getUsersList();
         console.log("END".green); //!
 
-        // res.status(200).json(users);
-        res.redirect("/test");
+        res.status(200).json(users);
+        // res.redirect("/test");
 
     } catch (e) {
         res.status(500).json({ error: e.message })
