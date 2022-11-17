@@ -8,7 +8,7 @@ const { lineBreak } = require("./service");
 
 //----------------------------------------------------------------
 // const PORT = 3000;
-// const PORT = process.env.PORT; //! НЕ РАБОТАЕТ!!!
+// const PORT = process.env.PORT; 
 const PORT = process.env.PORT || 3000;
 
 const app = express();
