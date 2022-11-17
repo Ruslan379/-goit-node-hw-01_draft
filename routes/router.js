@@ -77,7 +77,9 @@ router.get("/users", async (req, res) => {
         console.log("END".green); //!
 
         res.status(200).json(users);
-        // res.redirect("/test");
+        // res.redirect("/test"); //! Так УЖЕ НЕ РАБОТАЕТ!!!
+        // res.redirect("http://localhost:8082/api/test");
+
 
     } catch (e) {
         res.status(500).json({ error: e.message })
