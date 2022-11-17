@@ -64,8 +64,10 @@ router.get("/test", (req, res) => {
     lineBreak();
     console.log("END".bgWhite.black); //!
 
-    // res.send("GET request");
     res.json(test);
+    // res.send("GET request on the /test");
+    // res.end("GET request-end on the /test");
+
 });
 
 

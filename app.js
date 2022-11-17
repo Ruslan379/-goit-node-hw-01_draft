@@ -13,7 +13,20 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(morgan('tiny'));
-app.use(express.json());
+app.use(express.json()); //! Парсер JSON
+
+//! Middleware
+app.use((req, res, next) => {
+    console.log('Middleware - Наше промежуточное ПО'.bgYellow.green);
+    lineBreak();
+    next();
+});
+
+//! Промежуточная обработка в пути для всех методов запросов
+app.all('/anything', (req, res, next) => {
+    console.log('Anything method.');
+    next(); // передаем управление дальше
+});
 
 // app.get("/test", (req, res) => {
 //     res.json({ message: "Hello my dear friend!" });
