@@ -14,7 +14,8 @@ const { lineBreak } = require("../../service");
 
 //------------------------------------------------------------
 // const userPath = path.join(__dirname, "/../db/users.json");
-const userPath = path.join(__dirname, "/../../db/contacts2.json");
+// const userPath = path.join(__dirname, "/../../db/contacts2.json");
+const userPath = path.join(__dirname, "/../../models/contacts.json");
 lineBreak();
 console.log("userPath:".bgBlue.yellow, userPath.blue);
 lineBreak();
@@ -55,7 +56,7 @@ const writeUsers = async (users) => {
 
 //! 0. Тестовый ЭНДПОИНТ
 router.get("/test", (req, res) => {
-    console.log("START-GET/Test".bgWhite.black); //!
+    console.log("START-->GET/Test".bgWhite.black); //!
     lineBreak();
     const test = {
         message1: "Hello my dear friend!",
@@ -65,7 +66,7 @@ router.get("/test", (req, res) => {
     console.log("Это ТЕСТОВАЯ СТРАНИЦА".bgYellow.black); //!
     console.table([test]); //!
     lineBreak();
-    console.log("END-GET/Test".bgWhite.black); //!
+    console.log("END-->GET/Test".bgWhite.black); //!
 
     res.json(test);
     // res.send("GET request on the /test");
@@ -77,9 +78,9 @@ router.get("/test", (req, res) => {
 //! 1. Получение списка ВСЕХ ПОЛЬЗОВАТЕЛЕЙ
 router.get("/", async (req, res) => {
     try {
-        console.log("START-GET/All".green); //!
+        console.log("START-->GET/All".green); //!
         const users = await getUsersList();
-        console.log("END-GET/All".green); //!
+        console.log("END-->GET/All".green); //!
 
         res.status(200).json(users);
         // res.redirect("/test"); //! Так УЖЕ НЕ РАБОТАЕТ!!!
@@ -94,7 +95,7 @@ router.get("/", async (req, res) => {
 //! 2. Получение ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
 router.get("/:id", async (req, res) => {
     try {
-        console.log("START-GET/:id".blue); //!
+        console.log("START-->GET/:id".blue); //!
         // const id = req.params.id; //1
         const { id } = req.params; //2
         const users = await getUsersList();
@@ -106,13 +107,17 @@ router.get("/:id", async (req, res) => {
         if (!user) {
             console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
-            console.log("END-GET/:id".blue); //!
-            return res.status(404).json({ message: `User wiht id:'${id}' was not found` });
+            console.log("END-->GET/:id".blue); //!
+            return res.status(404).json({
+                status: "error",
+                code: 404,
+                message: `User wiht id:'${id}' not found`
+            });
         };
         console.log(`ПОЛЬЗОВАТЕЛЬ с ID: ${id}:`.bgBlue.yellow); //!+++
         // console.table(user); //!+++
         console.table([user]); //!+++
-        console.log("END-GET/:id".blue); //!
+        console.log("END-->GET/:id".blue); //!
 
         // res.status(200).json(user[0]); //? - это УЖЕ ОБЪЕКТ из МАССИВА
         res.status(200).json(user); //? - это просто ОБЪЕКТ
@@ -126,12 +131,12 @@ router.get("/:id", async (req, res) => {
 //! 3. Создание НОВОГО ПОЛЬЗОВАТЕЛЯ
 router.post("/", async (req, res) => {
     try {
-        console.log("START-POST".yellow); //!
+        console.log("START-->POST".yellow); //!
         lineBreak();
         //! ++++++++++++++ ВАЛИДАЦИЯ Joi +++++++++++++++++++++++++
         const schema = Joi.object({
             name: Joi.string()
-                .alphanum()
+                // .alphanum()
                 .min(3)
                 .max(30)
                 .required(),
@@ -143,7 +148,7 @@ router.post("/", async (req, res) => {
             phone: Joi.string()
                 // .alphanum()
                 .min(5)
-                .max(12)
+                .max(14)
                 .required(),
         });
 
@@ -153,7 +158,7 @@ router.post("/", async (req, res) => {
             console.log("");
             console.log(validationResult.error);
             lineBreak();
-            console.log("END-POST".yellow); //!
+            console.log("END-->POST".yellow); //!
             return res.status(400).json({ status: validationResult.error.details });
         }
         //! ___________________ ВАЛИДАЦИЯ Joi ___________________
@@ -176,7 +181,7 @@ router.post("/", async (req, res) => {
         await writeUsers(users);
         // console.log("users_ПОСЛЕ:", users); //!
 
-        console.log("END-POST".yellow); //!
+        console.log("END-->POST".yellow); //!
 
         res.status(201).json({ user })
 
@@ -189,12 +194,12 @@ router.post("/", async (req, res) => {
 //! 4-1. PUT-Обновление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
 router.put("/:id", async (req, res) => {
     try {
-        console.log("START-PUT/:id".rainbow); //!
+        console.log("START-->PUT/:id".rainbow); //!
         lineBreak();
         //! ++++++++++++++ ВАЛИДАЦИЯ Joi +++++++++++++++++++++++++
         const schema = Joi.object({
             name: Joi.string()
-                .alphanum()
+                // .alphanum()
                 .min(3)
                 .max(30)
                 .required(),
@@ -206,7 +211,7 @@ router.put("/:id", async (req, res) => {
             phone: Joi.string()
                 // .alphanum()
                 .min(5)
-                .max(12)
+                .max(14)
                 .required(),
         });
 
@@ -216,7 +221,7 @@ router.put("/:id", async (req, res) => {
             console.log("");
             console.log(validationResult.error);
             lineBreak();
-            console.log("END-PUT/:id".rainbow); //!
+            console.log("END-->PUT/:id".rainbow); //!
             return res.status(400).json({ status: validationResult.error.details });
         }
         //! ___________________ ВАЛИДАЦИЯ Joi ___________________
@@ -239,8 +244,12 @@ router.put("/:id", async (req, res) => {
         if (index === -1) {
             console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
-            console.log("END-PUT/:id".rainbow); //!
-            return res.status(404).json({ message: `User wiht id:'${id}' was not found` });
+            console.log("END-->PUT/:id".rainbow); //!
+            return res.status(404).json({
+                status: "error",
+                code: 404,
+                message: `User wiht id:'${id}' not found`
+            });
         };
 
         //?-1  как правильно?
@@ -262,7 +271,7 @@ router.put("/:id", async (req, res) => {
 
         await writeUsers(users);
 
-        console.log("END-PUT/:id".rainbow); //!
+        console.log("END-->PUT/:id".rainbow); //!
 
         res.status(200).json(user)
 
@@ -276,12 +285,12 @@ router.put("/:id", async (req, res) => {
 //! 4-2. PATCH-Обновление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
 router.patch("/:id", async (req, res) => {
     try {
-        console.log("START-PATCH/:id".rainbow); //!
+        console.log("START-->PATCH/:id".rainbow); //!
         lineBreak();
         //! ++++++++++++++ ВАЛИДАЦИЯ Joi +++++++++++++++++++++++++
         const schema = Joi.object({
             name: Joi.string()
-                .alphanum()
+                // .alphanum()
                 .min(3)
                 .max(30)
                 .optional(),
@@ -293,7 +302,7 @@ router.patch("/:id", async (req, res) => {
             phone: Joi.string()
                 // .alphanum()
                 .min(5)
-                .max(12)
+                .max(14)
                 .optional(),
         });
 
@@ -303,7 +312,7 @@ router.patch("/:id", async (req, res) => {
             console.log("");
             console.log(validationResult.error);
             lineBreak();
-            console.log("END-PATCH/:id".rainbow); //!
+            console.log("END-->PATCH/:id".rainbow); //!
             return res.status(400).json({ status: validationResult.error.details });
         }
         //! ___________________ ВАЛИДАЦИЯ Joi ___________________
@@ -328,8 +337,12 @@ router.patch("/:id", async (req, res) => {
         if (index === -1) {
             console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
-            console.log("END-PATCH/:id".rainbow); //!
-            return res.status(404).json({ message: `User wiht id:'${id}' was not found` });
+            console.log("END-->PATCH/:id".rainbow); //!
+            return res.status(404).json({
+                status: "error",
+                code: 404,
+                message: `User wiht id:'${id}' not found`
+            });
         };
 
         const user = { ...users[index], ...body };
@@ -341,7 +354,7 @@ router.patch("/:id", async (req, res) => {
 
         await writeUsers(users);
 
-        console.log("END-PATCH/:id".rainbow); //!
+        console.log("END-->PATCH/:id".rainbow); //!
 
         res.status(200).json(user)
 
@@ -354,7 +367,7 @@ router.patch("/:id", async (req, res) => {
 //! 5. Удаление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
 router.delete("/:id", async (req, res) => {
     try {
-        console.log("START-DELETE/:id".red); //!
+        console.log("START-->DELETE/:id".red); //!
         // const id = req.params.id; //1
         const { id } = req.params; //2
         const users = await getUsersList();
@@ -364,13 +377,17 @@ router.delete("/:id", async (req, res) => {
         if (filteredUsers.length === users.length) {
             console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
-            console.log("END-DELETE/:id".red);
-            return res.status(404).json({ message: `User wiht id:'${id}' was not found` });
+            console.log("END-->DELETE/:id".red);
+            return res.status(404).json({
+                status: "error",
+                code: 404,
+                message: `User wiht id:'${id}' not found`
+            });
         };
         console.log(`Этот ПОЛЬЗОВАТЕЛЬ УДАЛЕН ID: ${id}:`.bgRed.yellow); //!
         console.table(deletedUser); //!
         await writeUsers(filteredUsers);
-        console.log("END-DELETE/:id".red); //!
+        console.log("END-->DELETE/:id".red); //!
 
         // res.status(200).json({ message: "User was remove" });
         res.status(200).json({ message: "User was remove:", ...deletedUser[0] });
@@ -385,12 +402,12 @@ router.delete("/:id", async (req, res) => {
 //! 6. Удаление ВСЕХ ПОЛЬЗОВАТЕЛЕЙ
 router.delete("/", async (req, res) => {
     try {
-        console.log("START-DELETE/All".bgRed.yellow); //!
+        console.log("START-->DELETE/All".bgRed.yellow); //!
         lineBreak();
         console.log("ВСЕ ПОЛЬЗОВАТЕЛИ УДАЛЕНЫ...".bgRed.white); //!
         await writeUsers([]);
         lineBreak();
-        console.log("END-DELETE/All".bgRed.yellow); //!
+        console.log("END-->DELETE/All".bgRed.yellow); //!
 
         res.status(200).json({ message: "ALL Users were remove..." });
 
