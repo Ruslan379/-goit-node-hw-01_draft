@@ -143,7 +143,10 @@ router.post("/users", async (req, res) => {
                 .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'ua',] } })
         });
 
-
+        const validationResult = schema.validate(body);
+        if (validationResult.error) {
+            return res.status(400).json({ status: validationResult.error });
+        }
 
 
 
