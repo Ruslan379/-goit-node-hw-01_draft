@@ -312,12 +312,11 @@ router.patch("/users/:id", async (req, res) => {
 
         const body = req.body; //! в index1.js ==> app.use(express.json());
         const { name, email, phone } = body;
-        // const { phone } = body;
         console.log("Эти поля прошли ВАЛИДАЦИЮ:".bgYellow.black);
         console.log("");
-        // console.log("name:".bgYellow.black, name.yellow); //!
-        // console.log("email:".bgYellow.black, email.yellow); //!
-        console.log("phone:".bgYellow.black, phone.yellow); //!
+        if (name) console.log("name:".bgYellow.black, name.yellow); //!
+        if (email) console.log("email:".bgYellow.black, email.yellow); //!
+        if (phone) console.log("phone:".bgYellow.black, phone.yellow); //!
         lineBreak();
         console.log("Обновляем такие поля:".bgYellow.red, body);
 
