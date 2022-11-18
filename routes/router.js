@@ -147,10 +147,12 @@ router.post("/users", async (req, res) => {
 
         const validationResult = schema.validate(req.body);
         if (validationResult.error) {
-            console.log("Ошибка ВАЛИДАЦИИ:".bgRed.black, validationResult.error);
+            console.log("Ошибка ВАЛИДАЦИИ:".bgRed.black);
+            console.log("");
+            console.log(validationResult.error);
             lineBreak();
             console.log("END-POST".yellow); //!
-            return res.status(400).json({ status: validationResult.error });
+            return res.status(400).json({ status: validationResult.error.details });
         }
         //! ___________________ ВАЛИДАЦИЯ Joi ___________________
 
