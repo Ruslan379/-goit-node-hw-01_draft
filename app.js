@@ -1,5 +1,6 @@
 require("colors");
 const express = require("express");
+const fs = require("fs/promises");
 const morgan = require("morgan");
 require("dotenv").config();
 
@@ -13,29 +14,41 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
+app.use(express.json()); //! Парсер JSON
+
+
+//! morgan
 // app.use(morgan('combined')); //* +++
 // app.use(morgan('common ')); //* +++
 app.use(morgan('dev')); //* +++++
 // app.use(morgan('short')); //* +++
 // app.use(morgan('tiny')); //* +++
 
-
 // app.use(logger('dev')); //?
 
-app.use(express.json()); //! Парсер JSON
 
 //! Middleware
 app.use((req, res, next) => {
-    console.log('Middleware - Наше промежуточное ПО'.bgYellow.green);
+    console.log('Middleware - Наше промежуточное TECTОВОЕ ПО'.bgYellow.green);
     lineBreak();
     next();
 });
 
-//! Промежуточная обработка в пути для всех методов запросов
+//! Промежуточная обработка в пути для всех методов запросов - ?????
 app.all('/anything', (req, res, next) => {
     console.log('Anything method.');
     next(); // передаем управление дальше
 });
+
+//! Middleware - ведение логов всех запросов
+app.use(async (req, res, next) => {
+    const { method, url } = req;
+    const date = moment().format("DD-MM-YYYY_hh:mm:ss")
+    console.log('Middleware - ЛОГ запроса записан в файл server.txt'.bgYellow.green);
+    lineBreak();
+    next();
+});
+
 
 // app.get("/test", (req, res) => {
 //     res.json({ message: "Hello my dear friend!" });
