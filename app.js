@@ -7,7 +7,7 @@ const morgan = require("morgan");
 require("dotenv").config();
 const moment = require('moment');
 
-const router = require("./routes/api/routerContacts");
+const contactsRouter = require("./routes/api/contacts");
 const { lineBreak } = require("./service");
 
 //----------------------------------------------------------------
@@ -65,8 +65,8 @@ app.use(async (req, res, next) => {
 //     res.json({ message: "Hello my dear friend!" });
 // });
 
-// app.use(router);
-app.use("/api", router);
+// app.use(contactsRouter);
+app.use("/api/contacts", contactsRouter);
 
 
 app.listen(PORT, (err) => {

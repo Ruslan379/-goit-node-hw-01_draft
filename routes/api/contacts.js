@@ -14,7 +14,7 @@ const { lineBreak } = require("../../service");
 
 //------------------------------------------------------------
 // const userPath = path.join(__dirname, "/../db/users.json");
-const userPath = path.join(__dirname, "/../../db/users.json");
+const userPath = path.join(__dirname, "/../../db/contacts2.json");
 lineBreak();
 console.log("userPath:".bgBlue.yellow, userPath.blue);
 lineBreak();
@@ -75,7 +75,7 @@ router.get("/test", (req, res) => {
 
 
 //! 1. Получение списка ВСЕХ ПОЛЬЗОВАТЕЛЕЙ
-router.get("/users", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         console.log("START-GET/All".green); //!
         const users = await getUsersList();
@@ -92,7 +92,7 @@ router.get("/users", async (req, res) => {
 
 
 //! 2. Получение ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
-router.get("/users/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
         console.log("START-GET/:id".blue); //!
         // const id = req.params.id; //1
@@ -124,7 +124,7 @@ router.get("/users/:id", async (req, res) => {
 
 
 //! 3. Создание НОВОГО ПОЛЬЗОВАТЕЛЯ
-router.post("/users", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         console.log("START-POST".yellow); //!
         lineBreak();
@@ -187,7 +187,7 @@ router.post("/users", async (req, res) => {
 
 
 //! 4-1. PUT-Обновление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
-router.put("/users/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
     try {
         console.log("START-PUT/:id".rainbow); //!
         lineBreak();
@@ -274,7 +274,7 @@ router.put("/users/:id", async (req, res) => {
 
 
 //! 4-2. PATCH-Обновление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
-router.patch("/users/:id", async (req, res) => {
+router.patch("/:id", async (req, res) => {
     try {
         console.log("START-PATCH/:id".rainbow); //!
         lineBreak();
@@ -352,7 +352,7 @@ router.patch("/users/:id", async (req, res) => {
 
 
 //! 5. Удаление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
-router.delete("/users/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
         console.log("START-DELETE/:id".red); //!
         // const id = req.params.id; //1
@@ -383,7 +383,7 @@ router.delete("/users/:id", async (req, res) => {
 
 
 //! 6. Удаление ВСЕХ ПОЛЬЗОВАТЕЛЕЙ
-router.delete("/users", async (req, res) => {
+router.delete("/", async (req, res) => {
     try {
         console.log("START-DELETE/All".bgRed.yellow); //!
         lineBreak();
