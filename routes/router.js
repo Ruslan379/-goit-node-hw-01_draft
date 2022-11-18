@@ -281,17 +281,17 @@ router.patch("/users/:id", async (req, res) => {
                 .alphanum()
                 .min(3)
                 .max(30)
-                .required(),
+                .optional(),
 
             email: Joi.string()
                 .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'ua', 'org',] } })
-                .required(),
+                .optional(),
 
             phone: Joi.string()
                 // .alphanum()
                 .min(5)
                 .max(12)
-                .required(),
+                .optional(),
         });
 
         const validationResult = schema.validate(req.body);
