@@ -85,29 +85,34 @@ router.get("/users", async (req, res) => {
     } catch (e) {
         res.status(500).json({ error: e.message })
     }
-});
+})
 
 
 //! 2. Получение ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
 router.get("/users/:id", async (req, res) => {
     try {
         console.log("START".blue); //!
-        const id = req.params.id;
+        // const id = req.params.id; //1
+        const { id } = req.params; //2
         const users = await getUsersList();
         // const user = users.find(user => String(user.id) === id); //? - это ОБЪЕКТ
-        const user = users.filter(user => String(user.id) === id); //* - это МАССИВ с одним ОБЪЕКТОМ
+        // const user = users.filter(user => String(user.id) === id); //* - это МАССИВ с одним ОБЪЕКТОМ
+        const [user] = users.filter(user => String(user.id) === id); //* - это УЖЕ ОБЪЕКТ
 
-        if (!user || user.length === 0) {
+        // if (!user || user.length === 0) {
+        if (!user) {
             console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
             console.log("END".blue); //!
-            return res.status(404).json({ message: "User was not found" });
+            return res.status(404).json({ message: `User wiht id:'${id}' was not found` });
         };
         console.log(`ПОЛЬЗОВАТЕЛЬ с ID: ${id}:`.bgBlue.yellow); //!+++
-        console.table(user); //!+++
+        // console.table(user); //!+++
+        console.table([user]); //!+++
         console.log("END".blue); //!
 
-        res.status(200).json(user[0]); //? - это УЖЕ ОБЪЕКТ
+        // res.status(200).json(user[0]); //? - это УЖЕ ОБЪЕКТ из МАССИВА
+        res.status(200).json(user); //? - это просто ОБЪЕКТ
 
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -143,7 +148,8 @@ router.post("/users", async (req, res) => {
 router.put("/users/:id", async (req, res) => {
     try {
         console.log("START".rainbow); //!
-        const id = req.params.id;
+        // const id = req.params.id; //1
+        const { id } = req.params; //2
         const body = req.body; //! в index1.js ==> app.use(express.json());
         const users = await getUsersList();
         const index = users.findIndex(user => String(user.id) === id);
@@ -152,7 +158,7 @@ router.put("/users/:id", async (req, res) => {
             console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
             console.log("END".rainbow); //!
-            return res.status(404).json({ message: "User was not found" });
+            return res.status(404).json({ message: `User wiht id:'${id}' was not found` });
         };
 
         const user = { ...users[index], ...body };
@@ -178,7 +184,8 @@ router.put("/users/:id", async (req, res) => {
 router.delete("/users/:id", async (req, res) => {
     try {
         console.log("START".red); //!
-        const id = req.params.id;
+        // const id = req.params.id; //1
+        const { id } = req.params; //2
         const users = await getUsersList();
         const deletedUser = users.filter(user => String(user.id) === String(id)); //* - это МАССИВ с одним ОБЪЕКТОМ удаленного User
         const filteredUsers = users.filter(user => String(user.id) !== String(id)); //* - это МАССИВ ОБЪЕКТОB НОВЫХ ПОЛЬЗОВАТЕЛЕЙ
@@ -187,7 +194,7 @@ router.delete("/users/:id", async (req, res) => {
             console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
             console.log("END".red);
-            return res.status(404).json({ message: "User was not found" });
+            return res.status(404).json({ message: `User wiht id:'${id}' was not found` });
         };
         console.log(`Этот ПОЛЬЗОВАТЕЛЬ УДАЛЕН ID: ${id}:`.bgRed.yellow); //!
         console.table(deletedUser); //!
