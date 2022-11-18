@@ -126,10 +126,12 @@ router.get("/users/:id", async (req, res) => {
 router.post("/users", async (req, res) => {
     try {
         console.log("START-POST".yellow); //!
+        lineBreak();
         const body = req.body; //! в index1.js ==> app.use(express.json());
         const { name, email } = body;
-        console.log("name:", name); //!
-        console.log("email:", email); //!
+        console.log("name:".bgYellow.black, name.yellow); //!
+        console.log("email:".bgYellow.black, email.yellow); //!
+        lineBreak();
 
         //! ВАЛИДАЦИЯ Joi
         const schema = Joi.object({
@@ -140,11 +142,20 @@ router.post("/users", async (req, res) => {
                 .required(),
 
             email: Joi.string()
-                .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'ua',] } })
+                .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'ua', 'org',] } }),
+
+            phone: Joi.string()
+                // .alphanum()
+                .min(5)
+                .max(12)
+                .required(),
         });
 
         const validationResult = schema.validate(body);
         if (validationResult.error) {
+            console.log("Ошибка ВАЛИДАЦИИ:".bgRed.black, validationResult.error);
+            lineBreak();
+            console.log("END-POST".yellow); //!
             return res.status(400).json({ status: validationResult.error });
         }
 
