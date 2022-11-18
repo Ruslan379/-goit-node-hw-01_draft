@@ -127,13 +127,7 @@ router.post("/users", async (req, res) => {
     try {
         console.log("START-POST".yellow); //!
         lineBreak();
-        const body = req.body; //! в index1.js ==> app.use(express.json());
-        const { name, email } = body;
-        console.log("name:".bgYellow.black, name.yellow); //!
-        console.log("email:".bgYellow.black, email.yellow); //!
-        lineBreak();
-
-        //! ВАЛИДАЦИЯ Joi
+        //! ++++++++++++++ ВАЛИДАЦИЯ Joi +++++++++++++++++++++++++
         const schema = Joi.object({
             name: Joi.string()
                 .alphanum()
@@ -151,16 +145,23 @@ router.post("/users", async (req, res) => {
                 .required(),
         });
 
-        const validationResult = schema.validate(body);
+        const validationResult = schema.validate(req.body);
         if (validationResult.error) {
             console.log("Ошибка ВАЛИДАЦИИ:".bgRed.black, validationResult.error);
             lineBreak();
             console.log("END-POST".yellow); //!
             return res.status(400).json({ status: validationResult.error });
         }
+        //! ___________________ ВАЛИДАЦИЯ Joi ___________________
 
-
-
+        const body = req.body; //! в index1.js ==> app.use(express.json());
+        const { name, email, phone } = body;
+        console.log("Эти поля прошли ВАЛИДАЦИЮ:".bgYellow.black);
+        console.log("");
+        console.log("name:".bgYellow.black, name.yellow); //!
+        console.log("email:".bgYellow.black, email.yellow); //!
+        console.log("phone:".bgYellow.black, phone.yellow); //!
+        lineBreak();
 
         const users = await getUsersList();
         const user = { id: randomUUID(), ...body };
