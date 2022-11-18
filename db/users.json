@@ -213,43 +213,44 @@
         }
     },
     {
-        "id": "94534c32-9ca9-4db7-8d16-a91c69fdba75",
+        "id": "a91c69fdba75",
         "name": "Sveta",
         "age": 99,
         "food": "meat",
         "cinema": "detective"
     },
     {
-        "id": "94534c32-9ca9-4db7-8d16-a91c69fdba77",
+        "id": "a91c69fdba77",
         "name": "Sveta3",
         "age": 91,
         "food": "meat-meat",
         "cinema": "detective-detective"
     },
     {
-        "id": "e893ed7f-c815-4d90-8023-4bf5b7bf5700",
+        "id": "4bf5b7bf5700",
         "name": "Ruslan2",
         "username": "Fate2",
         "email": "Ruslan2_Fate2@ukr.net",
-        "photocamera": "Nikon D810"
+        "photocamera": "Nikon D810",
+        "phone": "333-777-999"
     },
     {
-        "id": "f367252b-b701-4563-a51c-3b55f78778d6",
+        "id": "3b55f78778d6",
         "name": "Sveta3",
         "age": 3,
         "food": "meat3",
         "cinema": "detective3"
     },
     {
-        "id": "1ed49c6f-bbfe-4fac-9a6c-56b38e52eeba",
-        "website_2121": "kale.biz_y2121",
-        "email_2121": "Julianne.OConner_y2121@kory.org",
-        "phone_2121": "493-170-9623 y2121"
-    },
-    {
         "id": 163,
         "name": "kale2345",
         "email": "Julianne.kale2345@kory.ua",
         "phone": "234-56-78"
+    },
+    {
+        "id": "98b14e782f47",
+        "name": "Sveta12",
+        "email": "Sveta_12@ukr.net",
+        "phone": "112-12-12"
     }
 ]

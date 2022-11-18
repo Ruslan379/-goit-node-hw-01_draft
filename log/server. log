@@ -1,0 +1,9 @@
+
+GET, /api/users/1, 18-11-2022_09:52:02
+GET, /api/users/4, 18-11-2022_09:53:35
+POST, /api/users, 18-11-2022_10:02:00
+POST, /api/users, 18-11-2022_10:03:52
+GET, /api/users/a91c69fdba75, 18-11-2022_10:04:54
+GET, /api/users/a91c69fdba75, 18-11-2022_10:05:54
+GET, /api/users/a91c69fdba75, 18-11-2022_10:06:55
+PATCH, /api/users/4bf5b7bf5700, 18-11-2022_10:08:05

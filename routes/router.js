@@ -167,7 +167,7 @@ router.post("/users", async (req, res) => {
         lineBreak();
 
         const users = await getUsersList();
-        const user = { id: randomUUID(), ...body };
+        const user = { id: randomUUID().slice(-12), ...body };
         console.log(`НОВЫЙ ПОЛЬЗОВАТЕЛЬ с ID: ${user.id}:`.bgYellow.blue); //!
         console.table([user]); //!
 

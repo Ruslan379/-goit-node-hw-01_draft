@@ -1,8 +1,10 @@
 require("colors");
 const express = require("express");
 const fs = require("fs/promises");
+
 const morgan = require("morgan");
 require("dotenv").config();
+const moment = require('moment');
 
 const router = require("./routes/router");
 const { lineBreak } = require("./service");
@@ -43,8 +45,12 @@ app.all('/anything', (req, res, next) => {
 //! Middleware - ведение логов всех запросов
 app.use(async (req, res, next) => {
     const { method, url } = req;
-    const date = moment().format("DD-MM-YYYY_hh:mm:ss")
-    console.log('Middleware - ЛОГ запроса записан в файл server.txt'.bgYellow.green);
+    const date = moment().format("DD-MM-YYYY_hh:mm:ss");
+    await fs.appendFile("./log/server. log", `\n${method}, ${url}, ${date}`)
+
+    console.log('Middleware - ЛОГ запроса записан в файл server.txt:'.bgYellow.black);
+    console.log(`${method}, ${url}, ${date}`.bgYellow.black);
+
     lineBreak();
     next();
 });
