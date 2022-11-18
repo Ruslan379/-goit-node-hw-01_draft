@@ -161,8 +161,18 @@ router.put("/users/:id", async (req, res) => {
             return res.status(404).json({ message: `User wiht id:'${id}' was not found` });
         };
 
-        // const user = { ...users[index], ...body }; //?-1  как правильно?
-        const user = { id, ...body }; //?-2  как правильно?
+        //?-1  как правильно?
+        // const user = { ...users[index], ...body }; 
+        //?-2  как правильно?
+        let user = null;
+        if (isNaN(Number(id))) {
+            console.log("id:", id);
+            user = { id, ...body }
+        } else {
+            user = { id: Number(id), ...body };
+        }
+
+
         users.splice(index, 1, user);
         // console.log("users_ПОСЛЕ:", users); //!
 

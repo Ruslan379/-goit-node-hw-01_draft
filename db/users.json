@@ -70,9 +70,9 @@
     },
     {
         "id": 4,
-        "website": "kale.biz_y444",
-        "email": "Julianne.OConner_y444@kory.org",
-        "phone": "493-170-9623 y444"
+        "website_y2424": "kale.biz_y2424",
+        "email_y2424": "Julianne.OConner_y2424@kory.org",
+        "phone_y2424": "493-170-9623 y2424"
     },
     {
         "id": 5,
@@ -242,9 +242,8 @@
     },
     {
         "id": "1ed49c6f-bbfe-4fac-9a6c-56b38e52eeba",
-        "name": "Sveta4",
-        "age": 4,
-        "food": "meat4",
-        "cinema": "detective4"
+        "website_2121": "kale.biz_y2121",
+        "email_2121": "Julianne.OConner_y2121@kory.org",
+        "phone_2121": "493-170-9623 y2121"
     }
 ]
