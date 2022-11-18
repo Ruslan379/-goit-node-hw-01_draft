@@ -215,7 +215,7 @@ router.put("/users/:id", async (req, res) => {
             console.log("");
             console.log(validationResult.error);
             lineBreak();
-            console.log("END-POST".yellow); //!
+            console.log("END-PUT/:id".rainbow); //!
             return res.status(400).json({ status: validationResult.error.details });
         }
         //! ___________________ ВАЛИДАЦИЯ Joi ___________________
@@ -302,7 +302,7 @@ router.patch("/users/:id", async (req, res) => {
             console.log("");
             console.log(validationResult.error);
             lineBreak();
-            console.log("END-POST".yellow); //!
+            console.log("END-PATCH/:id".rainbow); //!
             return res.status(400).json({ status: validationResult.error.details });
         }
         //! ___________________ ВАЛИДАЦИЯ Joi ___________________
@@ -319,6 +319,7 @@ router.patch("/users/:id", async (req, res) => {
         if (phone) console.log("phone:".bgYellow.black, phone.yellow); //!
         lineBreak();
         console.log("Обновляем такие поля:".bgYellow.red, body);
+        lineBreak();
 
         const users = await getUsersList();
         const index = users.findIndex(user => String(user.id) === id);
