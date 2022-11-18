@@ -1,4 +1,3 @@
-
 GET, /api/users/1, 18-11-2022_09:52:02
 GET, /api/users/4, 18-11-2022_09:53:35
 POST, /api/users, 18-11-2022_10:02:00
@@ -7,3 +6,29 @@ GET, /api/users/a91c69fdba75, 18-11-2022_10:04:54
 GET, /api/users/a91c69fdba75, 18-11-2022_10:05:54
 GET, /api/users/a91c69fdba75, 18-11-2022_10:06:55
 PATCH, /api/users/4bf5b7bf5700, 18-11-2022_10:08:05
+PATCH, /api/users/4bf5b7bf5700, 18-11-2022_10:13:28
+PATCH, /api/werre, 18-11-2022_10:18:19
+PATCH, /api/werre, 18-11-2022_10:18:29
+PATCH, /api/anything, 18-11-2022_10:19:09
+PATCH, /anything, 18-11-2022_10:19:16
+PATCH, /anything, 18-11-2022_10:19:17
+PATCH, /anything, 18-11-2022_10:19:20
+PATCH, /anything, 18-11-2022_10:19:24
+PATCH, /anythin, 18-11-2022_10:19:28
+PATCH, /anythin, 18-11-2022_10:19:40
+PATCH, /anything, 18-11-2022_10:19:48
+PATCH, /anything, 18-11-2022_10:20:56
+PATCH, /anything, 18-11-2022_10:20:58
+PATCH, /anything, 18-11-2022_10:21:04
+PATCH, /anything, 18-11-2022_10:21:13
+PATCH, /anything, 18-11-2022_10:21:14
+PATCH, /anything, 18-11-2022_10:21:32
+PATCH, /anything, 18-11-2022_10:21:33
+PATCH, /api/test, 18-11-2022_10:22:01
+PATCH, /api/test, 18-11-2022_10:22:02
+PATCH, /api/test, 18-11-2022_10:22:03
+PATCH, /api/test, 18-11-2022_10:22:07
+PATCH, /api/test, 18-11-2022_10:22:09
+PATCH, /api/test, 18-11-2022_10:22:11
+PATCH, /api/test, 18-11-2022_10:22:44
+GET, /api/test, 18-11-2022_10:23:15
