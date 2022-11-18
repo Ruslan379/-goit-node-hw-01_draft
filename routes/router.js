@@ -188,9 +188,48 @@ router.post("/users", async (req, res) => {
 router.put("/users/:id", async (req, res) => {
     try {
         console.log("START-PUT/:id".rainbow); //!
+        lineBreak();
+        //! ++++++++++++++ ВАЛИДАЦИЯ Joi +++++++++++++++++++++++++
+        const schema = Joi.object({
+            name: Joi.string()
+                .alphanum()
+                .min(3)
+                .max(30)
+                .required(),
+
+            email: Joi.string()
+                .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'ua', 'org',] } }),
+
+            phone: Joi.string()
+                // .alphanum()
+                .min(5)
+                .max(12)
+                .required(),
+        });
+
+        const validationResult = schema.validate(req.body);
+        if (validationResult.error) {
+            console.log("Ошибка ВАЛИДАЦИИ:".bgRed.black);
+            console.log("");
+            console.log(validationResult.error);
+            lineBreak();
+            console.log("END-POST".yellow); //!
+            return res.status(400).json({ status: validationResult.error.details });
+        }
+        //! ___________________ ВАЛИДАЦИЯ Joi ___________________
+
         // const id = req.params.id; //1
         const { id } = req.params; //2
+
         const body = req.body; //! в index1.js ==> app.use(express.json());
+        const { name, email, phone } = body;
+        console.log("Эти поля прошли ВАЛИДАЦИЮ:".bgYellow.black);
+        console.log("");
+        console.log("name:".bgYellow.black, name.yellow); //!
+        console.log("email:".bgYellow.black, email.yellow); //!
+        console.log("phone:".bgYellow.black, phone.yellow); //!
+        lineBreak();
+
         const users = await getUsersList();
         const index = users.findIndex(user => String(user.id) === id);
 
