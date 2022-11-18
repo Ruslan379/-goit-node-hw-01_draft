@@ -4,6 +4,8 @@ require('colors');
 const express = require("express"); //2
 const router = express.Router(); //2
 
+const Joi = require('joi');
+
 const fs = require("fs/promises");
 const path = require("path");
 const { randomUUID } = require("crypto");
@@ -125,6 +127,27 @@ router.post("/users", async (req, res) => {
     try {
         console.log("START-POST".yellow); //!
         const body = req.body; //! в index1.js ==> app.use(express.json());
+        const { name, email } = body;
+        console.log("name:", name); //!
+        console.log("email:", email); //!
+
+        //! ВАЛИДАЦИЯ Joi
+        const schema = Joi.object({
+            name: Joi.string()
+                .alphanum()
+                .min(3)
+                .max(30)
+                .required(),
+
+            email: Joi.string()
+                .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'ua',] } })
+        });
+
+
+
+
+
+
         const users = await getUsersList();
         const user = { id: randomUUID(), ...body };
         console.log(`НОВЫЙ ПОЛЬЗОВАТЕЛЬ с ID: ${user.id}:`.bgYellow.blue); //!
