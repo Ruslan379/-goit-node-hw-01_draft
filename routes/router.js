@@ -318,7 +318,7 @@ router.patch("/users/:id", async (req, res) => {
         if (email) console.log("email:".bgYellow.black, email.yellow); //!
         if (phone) console.log("phone:".bgYellow.black, phone.yellow); //!
         lineBreak();
-        console.log("Обновляем такие поля:".bgYellow.red, body);
+        console.log("Обновляем такие поля:".bgGreen.red, body);
         lineBreak();
 
         const users = await getUsersList();
