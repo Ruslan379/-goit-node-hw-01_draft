@@ -270,6 +270,8 @@ router.put("/users/:id", async (req, res) => {
     }
 });
 
+
+
 //! 4-2. PATCH-Обновление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
 router.patch("/users/:id", async (req, res) => {
     try {
@@ -310,10 +312,11 @@ router.patch("/users/:id", async (req, res) => {
 
         const body = req.body; //! в index1.js ==> app.use(express.json());
         const { name, email, phone } = body;
+        // const { phone } = body;
         console.log("Эти поля прошли ВАЛИДАЦИЮ:".bgYellow.black);
         console.log("");
-        console.log("name:".bgYellow.black, name.yellow); //!
-        console.log("email:".bgYellow.black, email.yellow); //!
+        // console.log("name:".bgYellow.black, name.yellow); //!
+        // console.log("email:".bgYellow.black, email.yellow); //!
         console.log("phone:".bgYellow.black, phone.yellow); //!
         lineBreak();
         console.log("Обновляем такие поля:".bgYellow.red, body);
