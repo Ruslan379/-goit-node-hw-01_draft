@@ -32,3 +32,5 @@ PATCH, /api/test, 18-11-2022_10:22:09
 PATCH, /api/test, 18-11-2022_10:22:11
 PATCH, /api/test, 18-11-2022_10:22:44
 GET, /api/test, 18-11-2022_10:23:15
+GET, /api/users, 18-11-2022_10:47:34
+GET, /api/users, 18-11-2022_10:57:37

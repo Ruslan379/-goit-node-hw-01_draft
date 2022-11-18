@@ -2,6 +2,7 @@ require("colors");
 const express = require("express");
 const fs = require("fs/promises");
 
+const cors = require("cors");
 const morgan = require("morgan");
 require("dotenv").config();
 const moment = require('moment');
@@ -16,8 +17,9 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-app.use(express.json()); //! Парсер JSON
+app.use(cors());
 
+app.use(express.json()); //! Парсер JSON
 
 //! morgan
 // app.use(morgan('combined')); //* +++
