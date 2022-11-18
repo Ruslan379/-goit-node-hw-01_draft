@@ -38,12 +38,14 @@ app.use((req, res, next) => {
     next();
 });
 
+
 //! Middleware - Промежуточная обработка в пути для всех методов запросов - ?????
 app.all('/anything', (req, res, next) => {
     console.log('Middleware - Anything method'.bgYellow.cyan);
     lineBreak();
     next(); // передаем управление дальше
 });
+
 
 //! Middleware - ведение логов всех запросов
 app.use(async (req, res, next) => {
