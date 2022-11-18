@@ -1,8 +1,8 @@
-require("colors");
 const express = require("express");
-const fs = require("fs/promises");
-
 const cors = require("cors");
+const fs = require("fs/promises");
+require("colors");
+
 const morgan = require("morgan");
 require("dotenv").config();
 const moment = require('moment');
@@ -11,13 +11,13 @@ const router = require("./routes/router");
 const { lineBreak } = require("./service");
 
 //----------------------------------------------------------------
-// const PORT = 3000;
-// const PORT = process.env.PORT;
-const PORT = process.env.PORT || 3000;
-
 const app = express();
 
 app.use(cors());
+
+// const PORT = 3000;
+// const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json()); //! Парсер JSON
 

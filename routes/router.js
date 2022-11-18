@@ -1,13 +1,12 @@
-require('colors');
 // const { Router } = require("express"); //1
 // const router = Router(); //1
 const express = require("express"); //2
 const router = express.Router(); //2
-
-const Joi = require('joi');
-
 const fs = require("fs/promises");
 const path = require("path");
+require('colors');
+
+const Joi = require('joi');
 const { randomUUID } = require("crypto");
 
 const { lineBreak } = require("./../service");
@@ -373,6 +372,7 @@ router.delete("/users/:id", async (req, res) => {
 
         // res.status(200).json({ message: "User was remove" });
         res.status(200).json({ message: "User was remove:", ...deletedUser[0] });
+        // res.status(204);
 
     } catch (e) {
         res.status(500).json({ error: e.message });

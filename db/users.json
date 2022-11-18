@@ -235,13 +235,6 @@
         "phone": "333-777-999"
     },
     {
-        "id": "3b55f78778d6",
-        "name": "Sveta3",
-        "age": 3,
-        "food": "meat3",
-        "cinema": "detective3"
-    },
-    {
         "id": 163,
         "name": "kale2345",
         "email": "kale2345@kory.ua",
@@ -252,5 +245,12 @@
         "name": "Sveta12",
         "email": "Sveta_12@ukr.net",
         "phone": "112-12-12"
+    },
+    {
+        "id": "ea6a2b5b1c04",
+        "name": "Sveta5",
+        "age": 55,
+        "food": "meat5",
+        "cinema": "detective5"
     }
 ]

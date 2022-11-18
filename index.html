@@ -11,7 +11,7 @@
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script>
-        const productRequest = axios.get("http://localhost:8082/api/users/2");
+        const productRequest = axios.get("http://localhost:8082/api/users");
         productRequest
             .then(({ data }) => console.log(data))
             .catch(error => console.log(error.message));

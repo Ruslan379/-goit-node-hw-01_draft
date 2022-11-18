@@ -35,3 +35,16 @@ GET, /api/test, 18-11-2022_10:23:15
 GET, /api/users, 18-11-2022_10:47:34
 GET, /api/users, 18-11-2022_10:57:37
 GET, /api/users/2, 18-11-2022_11:07:54
+GET, /api/users, 18-11-2022_11:13:19
+GET, /api/users/1, 18-11-2022_11:18:17
+GET, /api/users/3, 18-11-2022_11:19:15
+GET, /api/users, 18-11-2022_11:19:21
+GET, /api/test, 18-11-2022_11:22:58
+DELETE, /api/users/3b55f78778d6, 18-11-2022_11:28:57
+DELETE, /api/users/3b55f78778d6, 18-11-2022_11:30:00
+POST, /api/users, 18-11-2022_11:32:19
+POST, /api/users, 18-11-2022_11:33:00
+POST, /api/users, 18-11-2022_11:33:36
+POST, /api/users, 18-11-2022_11:34:18
+POST, /api/users, 18-11-2022_11:35:15
+GET, /api/users, 18-11-2022_11:36:34
