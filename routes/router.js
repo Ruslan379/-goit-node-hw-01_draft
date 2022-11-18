@@ -166,12 +166,11 @@ router.put("/users/:id", async (req, res) => {
         //?-2  как правильно?
         let user = null;
         if (isNaN(Number(id))) {
-            console.log("id:", id);
+            // console.log("id:", id); 
             user = { id, ...body }
         } else {
             user = { id: Number(id), ...body };
         }
-
 
         users.splice(index, 1, user);
         // console.log("users_ПОСЛЕ:", users); //!
