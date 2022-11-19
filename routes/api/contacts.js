@@ -395,11 +395,11 @@ router.delete("/:id", async (req, res) => {
         await writeUsers(filteredUsers);
         console.log("END-->DELETE/:id".red); //!
 
-        // res.status(200).json({ message: "User was remove" });
-        res.status(200).json({
-            message: `User wiht id:'${id}' was remove:`, ...deletedUser
-        });
         // res.status(204);
+        // res.status(200).json({ message: "User was remove" });
+        // res.status(200).json({
+        //     message: `User wiht id:'${id}' was remove:`, ...deletedUser
+        // });
 
         res.status(200).json({
             status: "success",

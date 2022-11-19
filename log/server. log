@@ -127,3 +127,8 @@ PATCH, /api/contacts/2562b22b9840, 19-11-2022_11:48:03
 PATCH, /api/contacts/2562b22b9840, 19-11-2022_11:48:09
 DELETE, /api/contacts/b6c7d34dd40ae, 19-11-2022_11:49:17
 DELETE, /api/contacts/b6c7d34dd40a, 19-11-2022_11:49:28
+DELETE, /api/contacts/38ea38fcf01c2, 19-11-2022_11:58:46
+DELETE, /api/contacts/38ea38fcf01c, 19-11-2022_11:59:03
+DELETE, /api/contacts/38ea38fcf01c, 19-11-2022_12:00:01
+DELETE, /api/contacts/38ea38fcf01c2, 19-11-2022_12:00:50
+DELETE, /api/contacts/38ea38fcf01c, 19-11-2022_12:01:05
