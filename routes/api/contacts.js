@@ -426,7 +426,15 @@ router.delete("/", async (req, res) => {
         lineBreak();
         console.log("END-->DELETE/All".bgRed.yellow); //!
 
-        res.status(200).json({ message: "ALL Users were remove..." });
+        // res.status(200).json({ message: "ALL Users were remove..." });
+        res.status(200).json({
+            status: "success",
+            code: 204,
+            message: "ALL Users were remove...",
+            data: {
+                result: []
+            }
+        });
 
 
     } catch (e) {
