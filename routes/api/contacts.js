@@ -16,7 +16,7 @@ const { lineBreak } = require("../../service");
 // TODO: ------------------------ Определяем путь к файлу  contacts.json ------------------------
 // const userPath = path.join(__dirname, "/../db/users.json");
 // const userPath = path.join(__dirname, "/../../db/contacts2.json");
-const userPath = path.join(__dirname, "/../../models/contacts2.json");
+const userPath = path.join(__dirname, "/../../models/contacts.json");
 lineBreak();
 console.log("userPath:".bgBlue.yellow, userPath.blue);
 lineBreak();
@@ -461,7 +461,6 @@ router.delete("/", async (req, res, next) => {
                 result: []
             }
         });
-
 
     } catch (e) {
         next(e);
