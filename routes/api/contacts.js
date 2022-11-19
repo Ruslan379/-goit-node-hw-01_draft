@@ -16,7 +16,7 @@ const { lineBreak } = require("../../service");
 // TODO: ------------------------ Определяем путь к файлу  contacts.json ------------------------
 // const userPath = path.join(__dirname, "/../db/users.json");
 // const userPath = path.join(__dirname, "/../../db/contacts2.json");
-const userPath = path.join(__dirname, "/../../models/contacts.json");
+const userPath = path.join(__dirname, "/../../models/contacts2.json");
 lineBreak();
 console.log("userPath:".bgBlue.yellow, userPath.blue);
 lineBreak();
@@ -79,7 +79,7 @@ router.get("/test", (req, res) => {
 
 
 //! 1. Получение списка ВСЕХ ПОЛЬЗОВАТЕЛЕЙ
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
     try {
         console.log("START-->GET/All".green); //!
         const users = await getUsersList();
@@ -99,13 +99,14 @@ router.get("/", async (req, res) => {
         });
 
     } catch (e) {
-        res.status(500).json({ error: e.message })
+        next(e);
+        // res.status(500).json({ error: e.message })
     }
 });
 
 
 //! 2. Получение ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res, next) => {
     try {
         console.log("START-->GET/:id".blue); //!
         // const id = req.params.id; //1
@@ -149,7 +150,7 @@ router.get("/:id", async (req, res) => {
 
 
 //! 3. Создание НОВОГО ПОЛЬЗОВАТЕЛЯ
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
     try {
         console.log("START-->POST".yellow); //!
         lineBreak();
@@ -218,7 +219,7 @@ router.post("/", async (req, res) => {
 
 
 //! 4-1. PUT-Обновление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
-router.put("/:id", async (req, res) => {
+router.put("/:id", async (req, res, next) => {
     try {
         console.log("START-->PUT/:id".rainbow); //!
         lineBreak();
@@ -309,7 +310,7 @@ router.put("/:id", async (req, res) => {
 
 
 //! 4-2. PATCH-Обновление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", async (req, res, next) => {
     try {
         console.log("START-->PATCH/:id".rainbow); //!
         lineBreak();
@@ -391,7 +392,7 @@ router.patch("/:id", async (req, res) => {
 
 
 //! 5. Удаление ОДНОГО ПОЛЬЗОВАТЕЛЯ по id
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", async (req, res, next) => {
     try {
         console.log("START-->DELETE/:id".red); //!
         // const id = req.params.id; //1
@@ -437,7 +438,7 @@ router.delete("/:id", async (req, res) => {
 
 
 //! 6. Удаление ВСЕХ ПОЛЬЗОВАТЕЛЕЙ
-router.delete("/", async (req, res) => {
+router.delete("/", async (req, res, next) => {
     try {
         console.log("START-->DELETE/All".bgRed.yellow); //!
         lineBreak();

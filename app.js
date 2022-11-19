@@ -81,8 +81,10 @@ app.use((req, res) => {
 });
 
 
-//! Middleware - 
+//! Middleware - обработка ошибки СЕРВЕРА
 app.use((err, req, res, next) => {
+    console.log("!!! ОШИБКА !!!:".bgRed.white);
+    console.error(err.message.red);
     res.status(500).json({ message: err.message })
 });
 
