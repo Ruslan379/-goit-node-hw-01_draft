@@ -17,7 +17,8 @@ app.use(cors());
 
 // const PORT = 3000;
 // const PORT = process.env.PORT;
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
+const { PORT = 3000 } = process.env;
 
 app.use(express.json()); //! Парсер JSON
 
