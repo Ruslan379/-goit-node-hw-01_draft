@@ -13,12 +13,16 @@ const { randomUUID } = require("crypto");
 const { lineBreak } = require("../../service");
 
 //------------------------------------------------------------
+// TODO: ------------------------ Определяем путь к файлу  contacts.json ------------------------
 // const userPath = path.join(__dirname, "/../db/users.json");
 // const userPath = path.join(__dirname, "/../../db/contacts2.json");
 const userPath = path.join(__dirname, "/../../models/contacts.json");
 lineBreak();
 console.log("userPath:".bgBlue.yellow, userPath.blue);
 lineBreak();
+// TODO: _________________________________________________________________________________________
+
+
 
 //!* ------------------------------------------------ ФУНЦИИ-ВЫЗЫВАЛКИ ------------------------------------------------
 //todo   ------  1. Получение списка ВСЕХ ПОЛЬЗОВАТЕЛЕЙ ------
@@ -32,7 +36,7 @@ const getUsersList = async (showListAllUsers = 1) => {
     };
     console.table(users);
     lineBreak();
-    return users
+    return users;
 };
 
 
