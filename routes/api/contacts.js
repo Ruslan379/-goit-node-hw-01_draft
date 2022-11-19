@@ -334,7 +334,7 @@ router.patch("/:id", async (req, res) => {
         if (email) console.log("email:".bgYellow.black, email.yellow); //!
         if (phone) console.log("phone:".bgYellow.black, phone.yellow); //!
         lineBreak();
-        console.log("Обновляем такие поля:".bgGreen.red, body);
+        console.log("Обновляем ТОЛЬКО ЭТИ поля:".bgGreen.red, body);
         lineBreak();
 
         const users = await getUsersList();
@@ -396,8 +396,18 @@ router.delete("/:id", async (req, res) => {
         console.log("END-->DELETE/:id".red); //!
 
         // res.status(200).json({ message: "User was remove" });
-        res.status(200).json({ message: "User was remove:", ...deletedUser[0] });
+        res.status(200).json({
+            message: `User wiht id:'${id}' was remove:`, ...deletedUser[0]
+        });
         // res.status(204);
+
+        res.status(200).json({
+            status: "success",
+            code: 204,
+            data: {
+                result: user
+            }
+        });
 
     } catch (e) {
         res.status(500).json({ error: e.message });
