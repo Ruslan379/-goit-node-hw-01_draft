@@ -4,6 +4,7 @@ const fs = require("fs/promises");
 require("colors");
 
 const morgan = require("morgan");
+const logger = require("morgan");
 require("dotenv").config();
 const moment = require('moment');
 
@@ -13,26 +14,31 @@ const { lineBreak } = require("./service");
 //----------------------------------------------------------------
 const app = express();
 
+//! Middleware - cors
 app.use(cors());
 
+//? Перенесен в server.js
 // const PORT = 3000;
 // const PORT = process.env.PORT;
 // const PORT = process.env.PORT || 3000;
-const { PORT = 3000 } = process.env;
+// const { PORT = 3000 } = process.env; //! +++++
 
-app.use(express.json()); //! Парсер JSON
+//! Middleware - Парсер JSON
+app.use(express.json());
 
-//! morgan
+//! Middleware - morgan/logger
+const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
+app.use(logger(formatsLogger));
+// app.use(logger('dev')); //?
+
 // app.use(morgan('combined')); //* +++
 // app.use(morgan('common ')); //* +++
-app.use(morgan('dev')); //* +++++
+// app.use(morgan('dev')); //! +++++
 // app.use(morgan('short')); //* +++
 // app.use(morgan('tiny')); //* +++
 
-// app.use(logger('dev')); //?
 
-
-//! Middleware
+//! Middleware - TECTОВОЕ ПО
 app.use((req, res, next) => {
     console.log('Middleware - Наше промежуточное TECTОВОЕ ПО'.bgYellow.green);
     lineBreak();
@@ -61,7 +67,7 @@ app.use(async (req, res, next) => {
     next();
 });
 
-
+//todo OLD
 // app.get("/test", (req, res) => {
 //     res.json({ message: "Hello my dear friend!" });
 // });
@@ -69,9 +75,11 @@ app.use(async (req, res, next) => {
 // app.use(contactsRouter);
 app.use("/api/contacts", contactsRouter);
 
+//? Перенесен в server.js
+// app.listen(PORT, (err) => {
+//     if (err) console.error("Error at server launch", err.message);
+//     console.log(`Server is running on the port: ${PORT}`.bgGreen.red);
+//     lineBreak();
+// });
 
-app.listen(PORT, (err) => {
-    if (err) console.error("Error at server launch", err.message);
-    console.log(`Server is running on the port: ${PORT}`.bgGreen.red);
-    lineBreak();
-});
+module.exports = app;
