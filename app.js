@@ -14,20 +14,17 @@ const { lineBreak } = require("./service");
 //----------------------------------------------------------------
 const app = express();
 
+
 //! Middleware - cors
 app.use(cors());
 
-//? Перенесен в server.js
-// const PORT = 3000;
-// const PORT = process.env.PORT;
-// const PORT = process.env.PORT || 3000;
-// const { PORT = 3000 } = process.env; //! +++++
 
 //! Middleware - Парсер JSON
 app.use(express.json());
 
+
 //! Middleware - morgan/logger
-const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
+const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 app.use(logger(formatsLogger));
 // app.use(logger('dev')); //?
 
@@ -74,6 +71,13 @@ app.use(async (req, res, next) => {
 
 // app.use(contactsRouter);
 app.use("/api/contacts", contactsRouter);
+
+//? Перенесен в server.js
+// const PORT = 3000;
+// const PORT = process.env.PORT;
+// const PORT = process.env.PORT || 3000;
+// const { PORT = 3000 } = process.env; //! +++++
+
 
 //? Перенесен в server.js
 // app.listen(PORT, (err) => {

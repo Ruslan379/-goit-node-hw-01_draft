@@ -9,6 +9,7 @@ const { lineBreak } = require("./service");
 //   console.log("Server running. Use our API on port: 3000")
 // })
 
+// console.log("process.env:", process.env); //! 
 
 //* Перенесен из ap.js
 // const PORT = 3000;
