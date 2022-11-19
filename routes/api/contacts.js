@@ -183,7 +183,13 @@ router.post("/", async (req, res) => {
 
         console.log("END-->POST".yellow); //!
 
-        res.status(201).json({ user })
+        res.status(201).json({
+            status: "success",
+            code: 201,
+            data: {
+                result: user
+            }
+        });
 
     } catch (e) {
         res.status(500).json({ error: e.message })
