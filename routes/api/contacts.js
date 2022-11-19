@@ -144,7 +144,8 @@ router.get("/:id", async (req, res, next) => {
         });
 
     } catch (e) {
-        res.status(500).json({ error: e.message });
+        next(e);
+        // res.status(500).json({ error: e.message });
     }
 });
 
@@ -213,7 +214,8 @@ router.post("/", async (req, res, next) => {
         });
 
     } catch (e) {
-        res.status(500).json({ error: e.message })
+        next(e);
+        // res.status(500).json({ error: e.message });
     }
 });
 
@@ -303,7 +305,8 @@ router.put("/:id", async (req, res, next) => {
         res.status(200).json(user)
 
     } catch (e) {
-        res.status(500).json({ error: e.message })
+        next(e);
+        // res.status(500).json({ error: e.message });
     }
 });
 
@@ -386,7 +389,8 @@ router.patch("/:id", async (req, res, next) => {
         res.status(200).json(user)
 
     } catch (e) {
-        res.status(500).json({ error: e.message })
+        next(e);
+        // res.status(500).json({ error: e.message });
     }
 });
 
@@ -432,7 +436,8 @@ router.delete("/:id", async (req, res, next) => {
         });
 
     } catch (e) {
-        res.status(500).json({ error: e.message });
+        next(e);
+        // res.status(500).json({ error: e.message });
     }
 });
 
@@ -459,7 +464,8 @@ router.delete("/", async (req, res, next) => {
 
 
     } catch (e) {
-        res.status(500).json({ error: e.message });
+        next(e);
+        // res.status(500).json({ error: e.message });
     }
 });
 

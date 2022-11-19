@@ -143,3 +143,12 @@ GET, /api/contacts, 19-11-2022_08:09:07
 GET, /api/contacts, 19-11-2022_11:10:08
 GET, /api/contacts, 19-11-2022_11:10:09
 GET, /api/contacts, 19-11-2022_11:10:13
+GET, /api/contacts, 19-11-2022_11:11:23
+GET, /api/contacts, 19-11-2022_11:11:24
+GET, /api/contacts, 19-11-2022_11:11:27
+GET, /api/contacts/1, 19-11-2022_11:11:46
+GET, /api/contacts/1, 19-11-2022_11:11:47
+GET, /api/contacts/1, 19-11-2022_11:11:49
+GET, /api/contacts/1, 19-11-2022_11:11:56
+GET, /api/contacts/1, 19-11-2022_11:12:28
+GET, /api/contacts/1, 19-11-2022_11:12:29
