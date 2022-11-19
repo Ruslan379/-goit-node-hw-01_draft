@@ -132,3 +132,5 @@ DELETE, /api/contacts/38ea38fcf01c, 19-11-2022_11:59:03
 DELETE, /api/contacts/38ea38fcf01c, 19-11-2022_12:00:01
 DELETE, /api/contacts/38ea38fcf01c2, 19-11-2022_12:00:50
 DELETE, /api/contacts/38ea38fcf01c, 19-11-2022_12:01:05
+DELETE, /api/contacts1, 19-11-2022_12:05:09
+DELETE, /api/contacts, 19-11-2022_12:05:22
