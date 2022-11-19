@@ -128,7 +128,15 @@ router.get("/:id", async (req, res) => {
         console.log("END-->GET/:id".blue); //!
 
         // res.status(200).json(user[0]); //? - это УЖЕ ОБЪЕКТ из МАССИВА
-        res.status(200).json(user); //? - это просто ОБЪЕКТ
+        // res.status(200).json(user); //? - это просто ОБЪЕКТ
+
+        res.status(200).json({
+            status: "success",
+            code: 200,
+            data: {
+                result: user
+            }
+        });
 
     } catch (e) {
         res.status(500).json({ error: e.message });
