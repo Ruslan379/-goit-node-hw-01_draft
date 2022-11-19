@@ -4,11 +4,12 @@ const express = require("express"); //2
 const router = express.Router(); //2
 const fs = require("fs/promises");
 const path = require("path");
-const createError = require('http-errors')
 require('colors');
 
 const Joi = require('joi');
 const { randomUUID } = require("crypto");
+const createError = require('http-errors');
+const { NotFound } = require('http-errors');
 
 // const { lineBreak } = require("../../service");
 const { lineBreak } = require("../../service");
@@ -123,18 +124,20 @@ router.get("/:id", async (req, res, next) => {
             lineBreak();
             console.log("END-->GET/:id".blue); //!
             //! Обработка ошибки:
-            //! 3 - вариант НЕ РАБОТАЕТ!!! ("message": "contactId is not defined")
-            // throw createError(404, `User wiht id:'${contactId}' not found`)
-            //! 2 - вариант - НЕ РАБОТАЕТ!!! ("message": "contactId is not defined")
-            // const error = new Error(`User wiht id:'${contactId}' not found`)
-            // error.status = 404
-            // throw error
-            //! 1 - вариант - РАБОТАЕТ!!!
-            return res.status(404).json({
-                status: "error",
-                code: 404,
-                message: `User wiht id:'${id}' not found`
-            });
+            //! 4 - вариант 
+            throw new NotFound(`User wiht id:'${id}' not found`);
+            //! 3 - вариант 
+            // throw createError(404, `User wiht id:'${id}' not found`);
+            //! 2 - вариант 
+            // const error = new Error(`User wiht id:'${id}' not found`);
+            // error.status = 404;
+            // throw error;
+            //! 1 - вариант 
+            // return res.status(404).json({
+            //     status: "error",
+            //     code: 404,
+            //     message: `User wiht id:'${id}' not found`
+            // });
         };
         console.log(`ПОЛЬЗОВАТЕЛЬ с ID: ${id}:`.bgBlue.yellow); //!+++
         // console.table(user); //!+++
@@ -283,11 +286,21 @@ router.put("/:id", async (req, res, next) => {
             console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
             console.log("END-->PUT/:id".rainbow); //!
-            return res.status(404).json({
-                status: "error",
-                code: 404,
-                message: `User wiht id:'${id}' not found`
-            });
+            //! Обработка ошибки:
+            //! 4 - вариант 
+            throw new NotFound(`User wiht id:'${id}' not found`);
+            //! 3 - вариант 
+            // throw createError(404, `User wiht id:'${id}' not found`);
+            //! 2 - вариант 
+            // const error = new Error(`User wiht id:'${id}' not found`);
+            // error.status = 404;
+            // throw error;
+            //! 1 - вариант 
+            // return res.status(404).json({
+            //     status: "error",
+            //     code: 404,
+            //     message: `User wiht id:'${id}' not found`
+            // });
         };
 
         //?-1  как правильно?
@@ -377,11 +390,21 @@ router.patch("/:id", async (req, res, next) => {
             console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
             console.log("END-->PATCH/:id".rainbow); //!
-            return res.status(404).json({
-                status: "error",
-                code: 404,
-                message: `User wiht id:'${id}' not found`
-            });
+            //! Обработка ошибки:
+            //! 4 - вариант 
+            throw new NotFound(`User wiht id:'${id}' not found`);
+            //! 3 - вариант 
+            // throw createError(404, `User wiht id:'${id}' not found`);
+            //! 2 - вариант 
+            // const error = new Error(`User wiht id:'${id}' not found`);
+            // error.status = 404;
+            // throw error;
+            //! 1 - вариант 
+            // return res.status(404).json({
+            //     status: "error",
+            //     code: 404,
+            //     message: `User wiht id:'${id}' not found`
+            // });
         };
 
         const user = { ...users[index], ...body };
@@ -418,11 +441,21 @@ router.delete("/:id", async (req, res, next) => {
             console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
             console.log("END-->DELETE/:id".red);
-            return res.status(404).json({
-                status: "error",
-                code: 404,
-                message: `User wiht id:'${id}' not found`
-            });
+            //! Обработка ошибки:
+            //! 4 - вариант 
+            throw new NotFound(`User wiht id:'${id}' not found`);
+            //! 3 - вариант 
+            // throw createError(404, `User wiht id:'${id}' not found`);
+            //! 2 - вариант 
+            // const error = new Error(`User wiht id:'${id}' not found`);
+            // error.status = 404;
+            // throw error;
+            //! 1 - вариант 
+            // return res.status(404).json({
+            //     status: "error",
+            //     code: 404,
+            //     message: `User wiht id:'${id}' not found`
+            // });
         };
         console.log(`Этот ПОЛЬЗОВАТЕЛЬ УДАЛЕН ID: ${id}:`.bgRed.yellow); //!
         console.table([deletedUser]); //!
