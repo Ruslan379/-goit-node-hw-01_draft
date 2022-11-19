@@ -77,7 +77,7 @@ app.use("/api/contacts", contactsRouter);
 //! Middleware - если маршрут не найден (если нет такой страницы)
 app.use((req, res) => {
     console.log('Middleware - Такой маршрут не найден...'.bgYellow.black);
-    res.status(404).json({ message: 'Not found' })
+    res.status(404).json({ message: 'Route not found' })
 });
 
 
@@ -85,7 +85,9 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
     console.log("!!! ОШИБКА !!!:".bgRed.white);
     console.error(err.message.red);
-    res.status(500).json({ message: err.message })
+
+    const { status = 500, message = "Server ERROR" } = err;
+    res.status(status).json({ message: err.message });
 });
 
 

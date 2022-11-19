@@ -4,6 +4,7 @@ const express = require("express"); //2
 const router = express.Router(); //2
 const fs = require("fs/promises");
 const path = require("path");
+const createError = require('http-errors')
 require('colors');
 
 const Joi = require('joi');
@@ -121,6 +122,14 @@ router.get("/:id", async (req, res, next) => {
             console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, id.red); //!
             lineBreak();
             console.log("END-->GET/:id".blue); //!
+            //! Обработка ошибки:
+            //! 3 - вариант НЕ РАБОТАЕТ!!! ("message": "contactId is not defined")
+            // throw createError(404, `User wiht id:'${contactId}' not found`)
+            //! 2 - вариант - НЕ РАБОТАЕТ!!! ("message": "contactId is not defined")
+            // const error = new Error(`User wiht id:'${contactId}' not found`)
+            // error.status = 404
+            // throw error
+            //! 1 - вариант - РАБОТАЕТ!!!
             return res.status(404).json({
                 status: "error",
                 code: 404,

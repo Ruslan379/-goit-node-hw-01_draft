@@ -1137,7 +1137,7 @@
 "http-cache-semantics@^3.7.3":
   "version" "3.7.3"
 
-"http-errors@2.0.0":
+"http-errors@^2.0.0", "http-errors@2.0.0":
   "integrity" "sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ=="
   "resolved" "https://registry.npmjs.org/http-errors/-/http-errors-2.0.0.tgz"
   "version" "2.0.0"
