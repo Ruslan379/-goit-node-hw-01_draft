@@ -81,9 +81,18 @@ router.get("/", async (req, res) => {
         const users = await getUsersList();
         console.log("END-->GET/All".green); //!
 
-        res.status(200).json(users);
+
         // res.redirect("/test"); //! Так УЖЕ НЕ РАБОТАЕТ!!!
         // res.redirect("http://localhost:8082/api/test");
+        // res.status(200).json(users);
+
+        res.status(200).json({
+            status: "success",
+            code: 200,
+            data: {
+                result: users
+            }
+        });
 
     } catch (e) {
         res.status(500).json({ error: e.message })
