@@ -377,7 +377,7 @@ router.delete("/:id", async (req, res) => {
         // const id = req.params.id; //1
         const { id } = req.params; //2
         const users = await getUsersList();
-        const deletedUser = users.filter(user => String(user.id) === String(id)); //* - это МАССИВ с одним ОБЪЕКТОМ удаленного User
+        const [deletedUser] = users.filter(user => String(user.id) === String(id)); //* - это ОБЪЕКТ c удаленным User
         const filteredUsers = users.filter(user => String(user.id) !== String(id)); //* - это МАССИВ ОБЪЕКТОB НОВЫХ ПОЛЬЗОВАТЕЛЕЙ
 
         if (filteredUsers.length === users.length) {
@@ -391,21 +391,22 @@ router.delete("/:id", async (req, res) => {
             });
         };
         console.log(`Этот ПОЛЬЗОВАТЕЛЬ УДАЛЕН ID: ${id}:`.bgRed.yellow); //!
-        console.table(deletedUser); //!
+        console.table([deletedUser]); //!
         await writeUsers(filteredUsers);
         console.log("END-->DELETE/:id".red); //!
 
         // res.status(200).json({ message: "User was remove" });
         res.status(200).json({
-            message: `User wiht id:'${id}' was remove:`, ...deletedUser[0]
+            message: `User wiht id:'${id}' was remove:`, ...deletedUser
         });
         // res.status(204);
 
         res.status(200).json({
             status: "success",
             code: 204,
+            message: `User wiht id:'${id}' was remove:`,
             data: {
-                result: user
+                result: deletedUser
             }
         });
 
