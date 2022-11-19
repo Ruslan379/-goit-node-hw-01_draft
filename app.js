@@ -69,8 +69,23 @@ app.use(async (req, res, next) => {
 //     res.json({ message: "Hello my dear friend!" });
 // });
 
+//!!!!! ===== ГЛАВНЫЙ ОБРАБОТЧИК ВСЕХ ЗАПРОСОВ  ===== 
 // app.use(contactsRouter);
 app.use("/api/contacts", contactsRouter);
+
+
+//! Middleware - если маршрут не найден (если нет такой страницы)
+app.use((req, res) => {
+    console.log('Middleware - Такой маршрут не найден...'.bgYellow.black);
+    res.status(404).json({ message: 'Not found' })
+});
+
+
+//! Middleware - 
+app.use((err, req, res, next) => {
+    res.status(500).json({ message: err.message })
+});
+
 
 //? Перенесен в server.js
 // const PORT = 3000;

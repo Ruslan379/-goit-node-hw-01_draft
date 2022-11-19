@@ -71,7 +71,6 @@ router.get("/test", (req, res) => {
     res.json(test);
     // res.send("GET request on the /test");
     // res.end("GET request-end on the /test");
-
 });
 
 
@@ -89,7 +88,7 @@ router.get("/", async (req, res) => {
     } catch (e) {
         res.status(500).json({ error: e.message })
     }
-})
+});
 
 
 //! 2. Получение ОДНОГО ПОЛЬЗОВАТЕЛЯ по id

@@ -136,3 +136,6 @@ DELETE, /api/contacts1, 19-11-2022_12:05:09
 DELETE, /api/contacts, 19-11-2022_12:05:22
 GET, /api/contacts/b6c7d34dd40a, 19-11-2022_05:56:24
 GET, /api/contacts/2562b22b9840, 19-11-2022_05:56:43
+GET, /api/contacts/test1, 19-11-2022_07:17:57
+GET, /api/contacts1, 19-11-2022_07:18:09
+GET, /api/contacts, 19-11-2022_07:19:58
