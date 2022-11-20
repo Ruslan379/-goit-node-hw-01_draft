@@ -309,7 +309,8 @@ router.put("/:id", async (req, res, next) => {
             // });
         };
 
-        //! Проверка id на чило/строка
+        //! Обновляем данные ПОЛЬЗОВАТЕЛЯ (1 - вариант)
+        //? Проверка id на число/строка
         let user = null;
         if (isNaN(Number(id))) {
             // console.log("id:", id); 
@@ -317,6 +318,9 @@ router.put("/:id", async (req, res, next) => {
         } else {
             user = { id: Number(id), ...body };
         };
+
+        //! Обновляем данные ПОЛЬЗОВАТЕЛЯ (2 - вариант)
+        // const user = { ...users[index], ...body };
 
         console.log(`ОБНОВЛЕННЫЙ ПОЛЬЗОВАТЕЛЬ с ID: ${id}:`.rainbow); //!
         console.table([user]); //!
@@ -411,13 +415,14 @@ router.patch("/:id", async (req, res, next) => {
             // });
         };
 
+        //! Обновляем данные ПОЛЬЗОВАТЕЛЯ (!!!только 2 - вариант)
         const user = { ...users[index], ...body };
-        users.splice(index, 1, user);
-        // console.log("users_ПОСЛЕ:", users); //!
 
         console.log(`ОБНОВЛЕННЫЙ ПОЛЬЗОВАТЕЛЬ с ID: ${id}:`.rainbow); //!
         console.table([user]); //!
 
+        users.splice(index, 1, user);
+        // console.log("users_ПОСЛЕ:", users); //!
         await writeUsers(users);
 
         console.log("END-->PATCH/:id".rainbow); //!
