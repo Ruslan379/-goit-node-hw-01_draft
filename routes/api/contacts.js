@@ -84,6 +84,8 @@ router.get("/test", (req, res) => {
 router.get("/", async (req, res, next) => {
     try {
         console.log("START-->GET/All".green); //!
+        lineBreak();
+
         const users = await getUsersList();
         console.log("END-->GET/All".green); //!
 
@@ -111,6 +113,8 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
     try {
         console.log("START-->GET/:id".blue); //!
+        lineBreak();
+
         // const id = req.params.id; //1
         const { id } = req.params; //2
         const users = await getUsersList();
@@ -167,6 +171,7 @@ router.post("/", async (req, res, next) => {
     try {
         console.log("START-->POST".yellow); //!
         lineBreak();
+
         //! ++++++++++++++ ВАЛИДАЦИЯ Joi +++++++++++++++++++++++++
         const schema = Joi.object({
             name: Joi.string()
@@ -237,6 +242,7 @@ router.put("/:id", async (req, res, next) => {
     try {
         console.log("START-->PUT/:id".rainbow); //!
         lineBreak();
+
         //! ++++++++++++++ ВАЛИДАЦИЯ Joi +++++++++++++++++++++++++
         const schema = Joi.object({
             name: Joi.string()
@@ -303,23 +309,20 @@ router.put("/:id", async (req, res, next) => {
             // });
         };
 
-        //?-1  как правильно?
-        // const user = { ...users[index], ...body }; 
-        //?-2  как правильно?
+        //! Проверка id на чило/строка
         let user = null;
         if (isNaN(Number(id))) {
             // console.log("id:", id); 
             user = { id, ...body }
         } else {
             user = { id: Number(id), ...body };
-        }
-
-        users.splice(index, 1, user);
-        // console.log("users_ПОСЛЕ:", users); //!
+        };
 
         console.log(`ОБНОВЛЕННЫЙ ПОЛЬЗОВАТЕЛЬ с ID: ${id}:`.rainbow); //!
         console.table([user]); //!
 
+        users.splice(index, 1, user);
+        // console.log("users_ПОСЛЕ:", users); //!
         await writeUsers(users);
 
         console.log("END-->PUT/:id".rainbow); //!
@@ -339,6 +342,7 @@ router.patch("/:id", async (req, res, next) => {
     try {
         console.log("START-->PATCH/:id".rainbow); //!
         lineBreak();
+
         //! ++++++++++++++ ВАЛИДАЦИЯ Joi +++++++++++++++++++++++++
         const schema = Joi.object({
             name: Joi.string()
@@ -431,6 +435,8 @@ router.patch("/:id", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
     try {
         console.log("START-->DELETE/:id".red); //!
+        lineBreak();
+
         // const id = req.params.id; //1
         const { id } = req.params; //2
         const users = await getUsersList();
