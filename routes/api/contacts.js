@@ -12,7 +12,7 @@ const { NotFound } = require('http-errors');
 
 //! Генерация случайного числа:
 const { randomUUID } = require("crypto"); //!+++
-const { nanoid } = require('nanoid');
+// const { nanoid } = require('nanoid'); //! НЕ РАБОТАЕТ!!!
 const { v4 } = require('uuid');
 const uniqid = require('uniqid');
 
