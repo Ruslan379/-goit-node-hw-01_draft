@@ -76,10 +76,12 @@ app.use("/api/contacts", contactsRouter);
 
 //! Middleware - если маршрут не найден (если нет такой страницы)
 app.use((req, res) => {
+    // console.log('Middleware - Такой маршрут не найден...'.bgYellow.black);
+    // res.status(404).json({ message: 'Route not found' });
+
     console.log('Middleware - Такой маршрут не найден...'.bgYellow.black);
     console.log('Middleware - Перенаправляю на "http://localhost:8082/api/contacts/test"'.bgYellow.black);
     res.redirect("http://localhost:8082/api/contacts/test");
-    // res.status(404).json({ message: 'Route not found\n, redirect on "http://localhost:8082/api/contacts"' });
 
 });
 
