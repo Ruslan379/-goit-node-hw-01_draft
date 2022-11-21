@@ -6,11 +6,12 @@ const fs = require("fs/promises"); //! АСИНХРОННЫЙ вариант-2
 
 const path = require('path');
 
-// import { nanoid } from 'nanoid';
-// const nanoid = require('nanoid');
 
+//! Генерация случайного числа:
+const { randomUUID } = require("crypto");
+const { nanoid } = require('nanoid');
 const { v4 } = require('uuid');
-const uniqid = require('uniqid');
+const uniqid = require('uniqid'); //!+++
 
 const { lineBreak } = require("./service");
 

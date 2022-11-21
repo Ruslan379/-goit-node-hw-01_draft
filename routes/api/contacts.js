@@ -7,9 +7,16 @@ const path = require("path");
 require('colors');
 
 const Joi = require('joi');
-const { randomUUID } = require("crypto");
 const createError = require('http-errors');
 const { NotFound } = require('http-errors');
+
+//! Генерация случайного числа:
+const { randomUUID } = require("crypto"); //!+++
+const { nanoid } = require('nanoid');
+const { v4 } = require('uuid');
+const uniqid = require('uniqid');
+
+
 
 // const { lineBreak } = require("../../service");
 const { lineBreak } = require("../../service");
