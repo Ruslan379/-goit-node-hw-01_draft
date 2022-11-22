@@ -49,9 +49,11 @@ async function creatingNewJSONfile(contactsParseNew) {
 
 // TODO: ------------------------ Раскомментируй и запиши значение - ТЗ ------------------------
 const contactsPath = path.resolve('./db/contacts.json');
+const contactsPath1 = path.join(__dirname, '/db/contacts.json');
 // console.log(`contactsPath:  ${contactsPath}`.red); //!
 lineBreak();
 console.log("contactsPath:".red, contactsPath.green); //!
+console.log("contactsPath1:".red, contactsPath1.green); //!
 lineBreak()
 
 
