@@ -51,7 +51,8 @@ const getUsersList = async (showListAllUsers = 1) => {
 
 //todo   ------  2. Создание НОВОГО списка ВСЕХ ПОЛЬЗОВАТЕЛЕЙ ------
 const writeUsers = async (users) => {
-    await fs.writeFile(userPath, JSON.stringify(users), 'utf8');
+    // await fs.writeFile(userPath, JSON.stringify(users), 'utf8');
+    await fs.writeFile(userPath, JSON.stringify(users, null, 2), 'utf8'); //! правильно форматирует contacts.json
     // const allUsers = await fs.readFile(userPath, 'utf8'); //? - Читаем файл contacts.json
     if (users.length !== 0) {
         console.log("СПИСОК НОВЫХ ПОЛЬЗОВАТЕЛЕЙ:".bgCyan.red); //!+++
@@ -63,7 +64,7 @@ const writeUsers = async (users) => {
     // lineBreak();
     return users;
 
-    // return await fs.writeFile(userPath, JSON.stringify(users));
+    // return await fs.writeFile(userPath, JSON.stringify(users, null, 2));
 };
 //* ____________________________________________________________________________________________________________________
 
